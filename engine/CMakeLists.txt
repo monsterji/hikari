@@ -201,6 +201,7 @@ set( HIKARI_CLIENT_GAME_EVENTS_SOURCE_FILES
     src/hikari/client/game/events/ObjectRemovedEventData.cpp
     src/hikari/client/game/events/TransitionCollisionEventData.cpp
     src/hikari/client/game/events/WeaponFireEventData.cpp
+    src/hikari/client/game/events/WeaponChangedEventData.cpp
     src/hikari/client/game/EventBusService.cpp
 )
 

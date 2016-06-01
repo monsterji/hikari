@@ -44,6 +44,7 @@
 #include "hikari/client/game/events/EntityDeathEventData.hpp"
 #include "hikari/client/game/events/EntityStateChangeEventData.hpp"
 #include "hikari/client/game/events/EventData.hpp"
+#include "hikari/client/game/events/WeaponChangedEventData.hpp"
 #include "hikari/client/game/events/WeaponFireEventData.hpp"
 #include "hikari/client/game/events/ObjectRemovedEventData.hpp"
 #include "hikari/client/game/ScreenEffectsService.hpp"
@@ -483,7 +484,7 @@ namespace hikari {
             //     }
 
             //     gp->setCurrentWeapon(currentWeaponId);
-            //     hero->setWeaponId(gp->getCurrentWeapon());
+            //     hero->changeWeapon(gp->getCurrentWeapon());
             // }
         }
 
@@ -952,7 +953,7 @@ namespace hikari {
             gp->resetPlayerEnergyToDefault();
             gp->setCurrentWeapon(0);
             guiWeaponMenu->setSelectedIndex(0);
-            hero->setWeaponId(gp->getCurrentWeapon());
+            hero->changeWeapon(gp->getCurrentWeapon());
         }
 
         // Reset direction to face right
@@ -1308,7 +1309,7 @@ namespace hikari {
             }
 
             gp->setCurrentWeapon(selectedWeaponId);
-            hero->setWeaponId(gp->getCurrentWeapon());
+            hero->changeWeapon(gp->getCurrentWeapon());
         }
     }
 
@@ -1464,6 +1465,10 @@ namespace hikari {
             auto weaponFireDelegate = EventListenerDelegate(std::bind(&GamePlayState::handleWeaponFireEvent, this, std::placeholders::_1));
             eventBus->addListener(weaponFireDelegate, WeaponFireEventData::Type);
             eventHandlerDelegates.push_back(std::make_pair(weaponFireDelegate, WeaponFireEventData::Type));
+
+            auto weaponChangedDelegate = EventListenerDelegate(std::bind(&GamePlayState::handleWeaponChangedEvent, this, std::placeholders::_1));
+            eventBus->addListener(weaponChangedDelegate, WeaponChangedEventData::Type);
+            eventHandlerDelegates.push_back(std::make_pair(weaponChangedDelegate, WeaponChangedEventData::Type));
 
             auto entityDamageDelegate = EventListenerDelegate(std::bind(&GamePlayState::handleEntityDamageEvent, this, std::placeholders::_1));
             eventBus->addListener(entityDamageDelegate, EntityDamageEventData::Type);
@@ -1665,6 +1670,18 @@ namespace hikari {
                 HIKARI_LOG(debug4) << "Tried to fire weapon with bad ID (" << eventData->getWeaponId() << ")";
             }
         }
+    }
+
+    void GamePlayState::handleWeaponChangedEvent(EventDataPtr evt) {
+        auto eventData = std::static_pointer_cast<WeaponChangedEventData>(evt);
+        HIKARI_LOG(debug) << "Member Weapon Changed! wid=" <<
+                          eventData->getWeaponId() << ", sid=" << eventData->getShooterId() <<
+                          ", faction=" << eventData->getFaction();
+
+        if(eventData->getShooterId() == hero->getId()) {
+            hero->setWeaponId(eventData->getWeaponId());
+        }
+
     }
 
     void GamePlayState::handleEntityStateChangeEvent(EventDataPtr evt) {

@@ -226,6 +226,7 @@ namespace hikari {
         bool isUnderWater() const;
         void setInvincibility(bool invincible);
         void setHasAvailableWeaponEnergy(bool hasEnergy);
+        void changeWeapon(int weaponId);
 
         const Vector2<float>& getAmbientVelocity() const;
         void setAmbientVelocity(const Vector2<float> & velocity);

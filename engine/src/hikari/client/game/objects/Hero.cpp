@@ -9,6 +9,7 @@
 #include "hikari/client/game/events/EventData.hpp"
 #include "hikari/client/game/events/EntityDeathEventData.hpp"
 #include "hikari/client/game/events/EntityStateChangeEventData.hpp"
+#include "hikari/client/game/events/WeaponChangedEventData.hpp"
 #include "hikari/core/game/Animation.hpp"
 #include "hikari/core/game/map/Room.hpp"
 #include "hikari/core/math/NESNumber.hpp"
@@ -256,6 +257,20 @@ namespace hikari {
 
     void Hero::setHasAvailableWeaponEnergy(bool hasEnergy) {
         hasAvailableWeaponEnergy = hasEnergy;
+    }
+
+    void Hero::changeWeapon(int weaponId) {
+        if(auto events = getEventBus().lock()) {
+            events->triggerEvent(
+                std::make_shared<WeaponChangedEventData>(
+                    weaponId,
+                    getId(),
+                    getFaction()
+                )
+            );
+        } else {
+            HIKARI_LOG(debug4) << "Hero::changeWeapon failed; no EventBus. id = " << getId();
+        }
     }
 
     const Vector2<float>& Hero::getAmbientVelocity() const {
