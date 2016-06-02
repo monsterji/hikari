@@ -1,5 +1,6 @@
 #include "hikari/client/game/Weapon.hpp"
 #include "hikari/client/game/WeaponAction.hpp"
+#include "hikari/client/game/WeaponState.hpp"
 #include "hikari/client/game/events/WeaponFireEventData.hpp"
 #include "hikari/client/game/Shot.hpp"
 #include "hikari/client/game/objects/GameObject.hpp"
@@ -93,5 +94,9 @@ namespace hikari {
     });
 
     return Shot(spawnedObjects);
+  }
+
+  std::unique_ptr<WeaponState> Weapon::createState(SquirrelService & squirrel) const {
+    return std::unique_ptr<WeaponState>(new WeaponState(name));
   }
 } // hikari

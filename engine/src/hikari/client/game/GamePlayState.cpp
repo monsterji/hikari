@@ -21,6 +21,7 @@
 #include "hikari/client/game/objects/PalettedAnimatedSprite.hpp"
 #include "hikari/client/game/Effect.hpp"
 #include "hikari/client/game/Weapon.hpp"
+#include "hikari/client/game/WeaponState.hpp"
 #include "hikari/client/game/Shot.hpp"
 #include "hikari/client/game/WeaponTable.hpp"
 #include "hikari/client/game/DamageKey.hpp"
@@ -1680,6 +1681,14 @@ namespace hikari {
 
         if(eventData->getShooterId() == hero->getId()) {
             hero->setWeaponId(eventData->getWeaponId());
+
+            if(auto weapons = weaponTable.lock()) {
+                auto weaponWeak = weapons->getWeaponById(eventData->getWeaponId());
+
+                if(auto weapon = weaponWeak.lock()) {
+                    hero->setWeaponState(weapon->createState(*scriptEnv));
+                }
+            }
         }
 
     }

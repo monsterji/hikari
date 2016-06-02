@@ -10,7 +10,9 @@ namespace hikari {
   class GameWorld;
   class WeaponAction;
   class WeaponFireEventData;
+  class WeaponState;
   class Shot;
+  class SquirrelService;
 
   /**
    * A Weapon describes the properties of a "usable" weapon. Weapons are
@@ -57,6 +59,8 @@ namespace hikari {
     void setSound(const std::string & sound);
     void setActions(const std::vector<std::shared_ptr<WeaponAction>> & actions);
     virtual Shot fire(GameWorld & world, WeaponFireEventData & eventData) const;
+
+    std::unique_ptr<WeaponState> createState(SquirrelService & squirrel) const;
   };
 
 } // hikari

@@ -181,6 +181,7 @@ set( HIKARI_CLIENT_GAME_SOURCE_FILES
     src/hikari/client/game/Weapon.cpp
     src/hikari/client/game/WeaponAction.cpp
     src/hikari/client/game/WeaponTable.cpp
+    src/hikari/client/game/WeaponState.cpp
     src/hikari/client/game/PaletteHelpers.cpp
 )
 

@@ -8,6 +8,8 @@
 
 namespace hikari {
 
+    class WeaponState;
+
     class Hero : public Entity {
     private:
         class MobilityState;
@@ -75,6 +77,8 @@ namespace hikari {
         std::unique_ptr<MobilityState> temporaryMobilityState;
         std::unique_ptr<ShootingState> shootingState;
         std::unique_ptr<ShootingState> nextShootingState;
+
+        std::unique_ptr<WeaponState> weaponState;
 
         /**
          * Determines whether the Hero can jump right now or not.
@@ -227,6 +231,7 @@ namespace hikari {
         void setInvincibility(bool invincible);
         void setHasAvailableWeaponEnergy(bool hasEnergy);
         void changeWeapon(int weaponId);
+        void setWeaponState(std::unique_ptr<WeaponState> && state);
 
         const Vector2<float>& getAmbientVelocity() const;
         void setAmbientVelocity(const Vector2<float> & velocity);

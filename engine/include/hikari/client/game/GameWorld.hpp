@@ -33,6 +33,7 @@ namespace hikari {
     class Projectile;
     class ProjectileFactory;
     class EventBus;
+    class WeaponState;
 
     class GameWorld : public Updatable {
     private:

@@ -10,6 +10,7 @@
 #include "hikari/client/game/events/EntityDeathEventData.hpp"
 #include "hikari/client/game/events/EntityStateChangeEventData.hpp"
 #include "hikari/client/game/events/WeaponChangedEventData.hpp"
+#include "hikari/client/game/WeaponState.hpp"
 #include "hikari/core/game/Animation.hpp"
 #include "hikari/core/game/map/Room.hpp"
 #include "hikari/core/math/NESNumber.hpp"
@@ -49,6 +50,7 @@ namespace hikari {
         , temporaryMobilityState(nullptr)
         , shootingState(nullptr)
         , nextShootingState(nullptr)
+        , weaponState(nullptr)
     {
         setDeathType(EntityDeathType::Hero);
 
@@ -271,6 +273,10 @@ namespace hikari {
         } else {
             HIKARI_LOG(debug4) << "Hero::changeWeapon failed; no EventBus. id = " << getId();
         }
+    }
+
+    void Hero::setWeaponState(std::unique_ptr<WeaponState> && state) {
+        weaponState.reset(state.release());
     }
 
     const Vector2<float>& Hero::getAmbientVelocity() const {
