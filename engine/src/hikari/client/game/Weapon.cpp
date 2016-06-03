@@ -96,7 +96,7 @@ namespace hikari {
     return Shot(spawnedObjects);
   }
 
-  std::unique_ptr<WeaponState> Weapon::createState(SquirrelService & squirrel) const {
-    return std::unique_ptr<WeaponState>(new WeaponState(name));
+  std::unique_ptr<WeaponState> Weapon::createState(SquirrelService & squirrel) {
+    return std::unique_ptr<WeaponState>(new WeaponState(*this));
   }
 } // hikari

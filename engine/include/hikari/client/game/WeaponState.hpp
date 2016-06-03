@@ -1,17 +1,17 @@
 #ifndef HIKARI_CLIENT_GAME_WEAPONSTATE
 #define HIKARI_CLIENT_GAME_WEAPONSTATE
 
-#include <string>
-
 namespace hikari {
+
+  class Weapon;
 
   class WeaponState {
   private:
-    std::string id;
+      Weapon & weapon;
 
   public:
-    WeaponState(const std::string & id);
-    ~WeaponState();
+      WeaponState(Weapon & weapon);
+      ~WeaponState();
   };
 
 } // hikari

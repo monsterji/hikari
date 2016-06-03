@@ -60,7 +60,7 @@ namespace hikari {
     void setActions(const std::vector<std::shared_ptr<WeaponAction>> & actions);
     virtual Shot fire(GameWorld & world, WeaponFireEventData & eventData) const;
 
-    std::unique_ptr<WeaponState> createState(SquirrelService & squirrel) const;
+    std::unique_ptr<WeaponState> createState(SquirrelService & squirrel);
   };
 
 } // hikari
