@@ -21,3 +21,5 @@ require("assets/scripts/behaviors/DoodadBehavior.nut");
 require("assets/scripts/behaviors/AppearingBlockBehavior.nut");
 require("assets/scripts/behaviors/MovingPlatformBehavior.nut");
 require("assets/scripts/behaviors/MovingPlatformBehavior.nut");
+// Weapons
+require("assets/scripts/weapons/WeaponStateBase.nut");

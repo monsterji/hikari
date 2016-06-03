@@ -3,15 +3,20 @@
 
 namespace hikari {
 
+  class Entity;
   class Weapon;
 
   class WeaponState {
-  private:
+  protected:
       Weapon & weapon;
 
   public:
       WeaponState(Weapon & weapon);
-      ~WeaponState();
+      virtual ~WeaponState();
+
+      virtual void attach(Entity * host);
+      virtual void detach();
+      virtual void fire();
   };
 
 } // hikari

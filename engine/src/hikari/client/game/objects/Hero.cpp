@@ -108,7 +108,9 @@ namespace hikari {
     }
 
     Hero::~Hero() {
-
+        if(weaponState) {
+            weaponState->detach();
+        }
     }
 
     const std::shared_ptr<HeroActionController>& Hero::getActionController() const {
@@ -276,7 +278,15 @@ namespace hikari {
     }
 
     void Hero::setWeaponState(std::unique_ptr<WeaponState> && state) {
+        if(weaponState) {
+            weaponState->detach();
+        }
+
         weaponState.reset(state.release());
+
+        if(weaponState) {
+            weaponState->attach(this);
+        }
     }
 
     const Vector2<float>& Hero::getAmbientVelocity() const {
@@ -523,6 +533,11 @@ namespace hikari {
             // A weapon is already fired (not consumed yet) so notify if possible.
             // TODO: Implement this so shields and other stateful weapons can be made.
         }
+
+        if(weaponState) {
+            weaponState->fire();
+        }
+
         Entity::fireWeapon();
     }
 
