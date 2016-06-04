@@ -6,6 +6,7 @@
 #include "hikari/client/game/objects/Entity.hpp"
 #include "hikari/client/game/objects/Faction.hpp"
 #include "hikari/client/game/objects/Enemy.hpp"
+#include "hikari/client/game/objects/Projectile.hpp"
 #include "hikari/core/game/map/Room.hpp"
 #include "hikari/core/game/Direction.hpp"
 #include "hikari/core/util/FileSystem.hpp"
@@ -193,6 +194,14 @@ namespace hikari {
                     .Prop(_SC("hitPoints"), &Enemy::getHitPoints, &Enemy::setHitPoints)
                     .Prop(_SC("liveOffscreen"), &Enemy::getLiveOffscreen, &Enemy::setLiveOffscreen)
                     .Func(_SC("handleObjectTouch"), &Enemy::handleObjectTouch)
+            );
+
+            Sqrat::RootTable(vm).Bind(
+                _SC("Projectile"),
+                Sqrat::DerivedClass<Projectile, Entity>(vm)
+                    .Prop(_SC("parentId"), &Projectile::getParentId, &Projectile::setParentId)
+                    .Prop(_SC("inert"), &Projectile::isInert, &Projectile::setInert)
+                    .Func(_SC("deflect"), &Projectile::deflect)
             );
         }
     }

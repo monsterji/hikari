@@ -8,6 +8,7 @@
 namespace hikari {
 
     class Motion;
+    class ProjectileBrain;
 
     class Projectile : public Entity, public Cloneable<Projectile> {
     public:
@@ -21,6 +22,7 @@ namespace hikari {
     private:
         static const std::shared_ptr<Motion> DeflectedMotion;
         std::shared_ptr<Motion> motion;
+        std::unique_ptr<ProjectileBrain> brain;
         bool inert;
         int parentId;
         ReflectionType reflectionType;
@@ -44,6 +46,9 @@ namespace hikari {
 
         void setMotion(const std::shared_ptr<Motion> motion);
         const std::shared_ptr<Motion>& getMotion() const;
+
+        void setBrain(std::unique_ptr<ProjectileBrain> && brain);
+        const std::unique_ptr<ProjectileBrain> & getBrain() const;
 
         void setReflectionType(ReflectionType type);
         ReflectionType getReflectionType() const;

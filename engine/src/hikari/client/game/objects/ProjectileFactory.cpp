@@ -1,12 +1,15 @@
 #include "hikari/client/game/objects/ProjectileFactory.hpp"
 #include "hikari/client/game/objects/GameObject.hpp"
 #include "hikari/client/game/objects/Projectile.hpp"
+#include "hikari/client/game/objects/ProjectileBrain.hpp"
 
 #include "hikari/client/scripting/SquirrelService.hpp"
 
 #include "hikari/core/game/AnimationLoader.hpp"
 #include "hikari/core/util/AnimationSetCache.hpp"
 #include "hikari/core/util/ImageCache.hpp"
+
+#include <memory>
 
 namespace hikari {
 
@@ -17,9 +20,9 @@ namespace hikari {
         , squirrel(squirrel)
         , prototypeRegistry()
     {
-         
+
     }
-    
+
     ProjectileFactory::~ProjectileFactory() {
 
     }
@@ -28,7 +31,11 @@ namespace hikari {
         auto prototype = prototypeRegistry.find(ProjectileType);
 
         if(prototype != std::end(prototypeRegistry)) {
-            return (*prototype).second->clone();
+            auto projectile = (*prototype).second->clone();
+
+            projectile->setBrain(std::unique_ptr<ProjectileBrain>(new ProjectileBrain()));
+
+            return projectile;
         } else {
             // TODO: Return a "default" item so no nullptrs will be made?
             return std::unique_ptr<Projectile>(nullptr);
