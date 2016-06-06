@@ -226,6 +226,7 @@ set( HIKARI_CLIENT_GAME_OBJECTS_SOURCE_FILES
     src/hikari/client/game/objects/EnemyBrain.cpp
     src/hikari/client/game/objects/Projectile.cpp
     src/hikari/client/game/objects/ProjectileBrain.cpp
+    src/hikari/client/game/objects/ScriptedProjectileBrain.cpp
     src/hikari/client/game/objects/ProjectileFactory.cpp
     src/hikari/client/game/objects/Motion.cpp
     src/hikari/client/game/objects/motions/LinearMotion.cpp

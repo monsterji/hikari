@@ -3,14 +3,14 @@
         "name": "MEGA BUSTER",
         "label": "M.BUSTER",
         "damageId": 7,
-        "projectileType": "Plasma Bullet",
+        "projectileType": "Scripted Joe Hammer",
         "limit": 3,
         "usageCost": 0,
         "usageSound": "Rockman (Shooting)",
         "usageActions": [
             {
                 "type": "spawnProjectile",
-                "projectileType": "Plasma Bullet",
+                "projectileType": "Scripted Joe Hammer",
                 "direction": "inherit",
                 "motion": {
                     "type": "Linear",

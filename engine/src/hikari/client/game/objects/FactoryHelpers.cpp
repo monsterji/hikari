@@ -9,6 +9,8 @@
 #include "hikari/client/game/objects/CollectableItem.hpp"
 #include "hikari/client/game/objects/Enemy.hpp"
 #include "hikari/client/game/objects/Projectile.hpp"
+#include "hikari/client/game/objects/ProjectileBrain.hpp"
+#include "hikari/client/game/objects/ScriptedProjectileBrain.hpp"
 #include "hikari/client/game/objects/Particle.hpp"
 #include "hikari/client/game/Effect.hpp"
 #include "hikari/client/game/objects/effects/NothingEffect.hpp"
@@ -442,6 +444,7 @@ namespace FactoryHelpers {
                                         const auto maximumAge        = static_cast<float>(templateObject.get("maximumAge", 0.0f).asDouble());
                                         const auto reflectionType    = templateObject.get("reflectionType", "none").asString();
                                         const auto deathType         = templateObject.get("deathType", "Nothing").asString();
+                                        const auto behavior          = templateObject["behavior"];
 
                                         hikari::BoundingBoxF boundingBox(
                                             0.0f,
@@ -485,6 +488,29 @@ namespace FactoryHelpers {
                                         } else if(deathType == "Hero") {
                                             instance->setDeathType(EntityDeathType::Hero);
                                         }
+
+                                        std::unique_ptr<ProjectileBrain> brain;
+
+                                        if(!behavior.isNull()) {
+                                            const auto behaviorType = behavior["type"].asString();
+
+                                            if(behaviorType == "scripted") {
+                                                const auto behaviorName = behavior["name"].asString();
+                                                const auto behaviorConfig = behavior["config"];
+
+                                                Sqrat::Table configTable(squirrel->getVmInstance());
+
+                                                if(!behaviorConfig.isNull()) {
+                                                    configTable = SquirrelUtils::jsonToSquirrel(squirrel->getVmInstance(), behaviorConfig);
+                                                }
+
+                                                HIKARI_LOG(debug2) << "\n\n\n" << behaviorName << "\n\n\n";
+
+                                                brain.reset(new ScriptedProjectileBrain(*squirrel, behaviorName, configTable));
+                                            }
+                                        }
+
+                                        instance->setBrain(std::move(brain));
 
                                         factoryPtr->registerPrototype(name, instance);
                                     }

@@ -31,11 +31,11 @@ namespace hikari {
         auto prototype = prototypeRegistry.find(ProjectileType);
 
         if(prototype != std::end(prototypeRegistry)) {
-            auto projectile = (*prototype).second->clone();
+            //auto projectile = (*prototype).second->clone();
 
-            projectile->setBrain(std::unique_ptr<ProjectileBrain>(new ProjectileBrain()));
+            //projectile->setBrain(std::unique_ptr<ProjectileBrain>(new ProjectileBrain()));
 
-            return projectile;
+            return (*prototype).second->clone();
         } else {
             // TODO: Return a "default" item so no nullptrs will be made?
             return std::unique_ptr<Projectile>(nullptr);
