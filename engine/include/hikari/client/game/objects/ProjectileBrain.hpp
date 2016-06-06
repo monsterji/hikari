@@ -54,7 +54,7 @@ namespace hikari {
          *
          * @return a clone of the instance
          */
-        //virtual std::unique_ptr<ProjectileBrain> clone() const;
+        virtual std::unique_ptr<ProjectileBrain> clone() const;
 
         /**
          * Attaches the ProjectileBrain to an instance of Projectile.
@@ -63,7 +63,7 @@ namespace hikari {
          * @see ProjectileBrain::detach
          * @see ProjectileBrain::getHost
          */
-        virtual void attach(Projectile* host);
+        virtual void attach(Projectile * host);
 
         /**
          * Detaches the brain from its host.

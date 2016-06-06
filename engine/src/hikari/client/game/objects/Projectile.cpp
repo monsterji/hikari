@@ -15,10 +15,10 @@ namespace hikari {
 
     Projectile::Projectile(int id, std::shared_ptr<Room> room)
         : Entity(id, room)
+        , brain(nullptr)
         , inert(false)
         , parentId(-1)
         , reflectionType(NO_REFLECTION)
-        , brain(nullptr)
     {
         body.setGravitated(false);
         body.setHasWorldCollision(false);
@@ -26,12 +26,16 @@ namespace hikari {
 
     Projectile::Projectile(const Projectile& proto)
         : Entity(proto)
+        , brain(nullptr)
         , inert(false)
         , parentId(proto.parentId)
         , reflectionType(proto.reflectionType)
-        , brain(nullptr)
     {
         setActive(false);
+
+        if(proto.brain) {
+            setBrain(proto.brain->clone());
+        }
     }
 
     Projectile::~Projectile() {
@@ -51,17 +55,6 @@ namespace hikari {
 
         if(brain) {
             brain->update(dt);
-        } else if(motion) {
-            Vector2<float> newVelocity = motion->calculate(dt, body.getVelocity());
-
-            setVelocityY(newVelocity.getY());
-
-            // Flip horizontal velocity depending on direction
-            if(getDirection() == Directions::Left) {
-                setVelocityX(-newVelocity.getX());
-            } else {
-                setVelocityX(newVelocity.getX());
-            }
         } else {
             if(getDirection() == Directions::Left) {
                 setVelocityX(-4.0f);
@@ -110,7 +103,17 @@ namespace hikari {
     }
 
     void Projectile::setBrain(std::unique_ptr<ProjectileBrain> && brain) {
+        auto & oldBrain = this->brain;
+
+        if(oldBrain) {
+            oldBrain->detach();
+        }
+
         this->brain.reset(brain.release());
+
+        if(this->brain) {
+            this->brain->attach(this);
+        }
     }
 
     const std::unique_ptr<ProjectileBrain> & Projectile::getBrain() const {
