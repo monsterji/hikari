@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics/RenderTarget.hpp>
 
+#include <cstdint>
 #include <memory>
 #include <queue>
 #include <unordered_map>
@@ -65,6 +66,13 @@ namespace hikari {
 
         std::unordered_map<int, std::shared_ptr<GameObject>> objectRegistry;
         bool gravityEnabled;
+
+        // Vector of GameObject version numbers. Incremented each time a
+        // GameObject is destroyed
+        std::vector<std::uint32_t> entityVersions;
+
+        // List of available GameObject slots.
+        std::vector<std::uint32_t> freeIndexList;
 
         void processAdditions();
 
