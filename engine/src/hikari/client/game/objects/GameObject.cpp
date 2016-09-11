@@ -58,9 +58,13 @@ namespace hikari {
         return nextId++;
     }
 
+    /* static */
+    const GameObject::Id GameObject::INVALID;
+
     GameObject::GameObject(int id)
         : id(id)
         , active(false)
+        , parentId{INVALID}
     {
 
     }
@@ -71,6 +75,14 @@ namespace hikari {
 
     int GameObject::getId() const {
         return id;
+    }
+
+    GameObject::Id GameObject::getParentId() const {
+        return parentId;
+    }
+
+    void GameObject::setParentId(GameObject::Id parentId) {
+        this->parentId = parentId;
     }
 
     bool GameObject::isActive() const {
