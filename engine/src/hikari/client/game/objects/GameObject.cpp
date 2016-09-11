@@ -1,4 +1,5 @@
 #include "hikari/client/game/objects/GameObject.hpp"
+#include "hikari/client/game/objects/GameObjectDefinition.hpp"
 #include "hikari/core/util/Log.hpp"
 
 namespace hikari {
@@ -65,6 +66,7 @@ namespace hikari {
         : id(id)
         , active(false)
         , parentId{INVALID}
+        , definition{nullptr}
     {
 
     }

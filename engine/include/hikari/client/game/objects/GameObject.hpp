@@ -6,6 +6,7 @@
 
 namespace hikari {
 
+    class GameObjectDefinition;
     class GameWorld;
 
     class GameObject : public Updatable {
@@ -61,6 +62,7 @@ namespace hikari {
         int id;
         bool active;
         Id parentId;
+        GameObjectDefinition * definition;
 
     protected:
         virtual void onActivated();
