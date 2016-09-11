@@ -48,7 +48,7 @@ namespace hikari {
         //
         // Static members
         //
-        static const int  generateObjectId();
+        static const int generateObjectId();
         static const Id INVALID;
 
     private:
