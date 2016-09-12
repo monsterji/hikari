@@ -6,4 +6,12 @@ namespace hikari {
 
     }
 
+    void GameObjectDefinition::setReflectionType(GameObjectDefinition::ReflectionType type) {
+      reflectionType = type;
+    }
+
+    GameObjectDefinition::ReflectionType GameObjectDefinition::getReflectionType() const {
+      return reflectionType;
+    }
+
 } // hikari
