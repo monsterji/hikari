@@ -5,6 +5,7 @@
 #include "hikari/client/game/objects/ProjectileFactory.hpp"
 #include "hikari/client/game/objects/ParticleFactory.hpp"
 #include "hikari/client/game/objects/HitBox.hpp"
+#include "hikari/client/game/objects/GameObjectDefinition.hpp"
 #include "hikari/client/game/objects/GameObject.hpp"
 #include "hikari/client/game/objects/CollectableItem.hpp"
 #include "hikari/client/game/objects/Enemy.hpp"
@@ -456,6 +457,7 @@ namespace FactoryHelpers {
                                         );
 
                                         auto instance = std::make_shared<hikari::Projectile>();
+                                        auto definition = std::unique_ptr<hikari::GameObjectDefinition>(new GameObjectDefinition());
                                         auto animationSetPtr = animationSetCache->get(animationSet);
                                         auto spriteTexture = imageCache->get(animationSetPtr->getImageFileName());
                                         instance->setAnimationSet(animationSetPtr);
@@ -487,6 +489,7 @@ namespace FactoryHelpers {
                                         }
 
                                         factoryPtr->registerPrototype(name, instance);
+                                        factoryPtr->registerDefinition(name, std::move(definition));
                                     }
                                 } else {
                                     HIKARI_LOG(debug3) << "No projectile templates found.";

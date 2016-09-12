@@ -1,4 +1,5 @@
 #include "hikari/client/game/objects/ProjectileFactory.hpp"
+#include "hikari/client/game/objects/GameObjectDefinition.hpp"
 #include "hikari/client/game/objects/GameObject.hpp"
 #include "hikari/client/game/objects/Projectile.hpp"
 
@@ -16,10 +17,11 @@ namespace hikari {
         , imageCache(imageCache)
         , squirrel(squirrel)
         , prototypeRegistry()
+        , definitionRegistry()
     {
-         
+
     }
-    
+
     ProjectileFactory::~ProjectileFactory() {
 
     }
@@ -38,6 +40,14 @@ namespace hikari {
     void ProjectileFactory::registerPrototype(const std::string & prototypeName, const std::shared_ptr<Projectile> & instance) {
         if(prototypeRegistry.find(prototypeName) == std::end(prototypeRegistry)) {
             prototypeRegistry.insert(std::make_pair(prototypeName, instance));
+        } else {
+            // Already registered; exception?
+        }
+    }
+
+    void ProjectileFactory::registerDefinition(const std::string & name, std::unique_ptr<GameObjectDefinition> && definition) {
+        if(definitionRegistry.find(name) == std::end(definitionRegistry)) {
+            definitionRegistry.insert(std::make_pair(name, std::move(definition)));
         } else {
             // Already registered; exception?
         }

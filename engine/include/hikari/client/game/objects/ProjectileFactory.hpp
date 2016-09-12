@@ -13,6 +13,7 @@ namespace hikari {
     class Projectile;
     class ImageCache;
     class SquirrelService;
+    class GameObjectDefinition;
 
     class ProjectileFactory : public Service {
     private:
@@ -23,6 +24,7 @@ namespace hikari {
         std::weak_ptr<ImageCache> imageCache;
         std::weak_ptr<SquirrelService> squirrel;
         std::unordered_map<std::string, std::shared_ptr<Projectile>> prototypeRegistry;
+        std::unordered_map<std::string, std::unique_ptr<GameObjectDefinition>> definitionRegistry;
 
     public:
         //
@@ -38,6 +40,7 @@ namespace hikari {
         std::unique_ptr<Projectile> create(const std::string& enemyType);
 
         void registerPrototype(const std::string & prototypeName, const std::shared_ptr<Projectile> & instancee);
+        void registerDefinition(const std::string & name, std::unique_ptr<GameObjectDefinition> && definition);
     };
 
 } // hikari
