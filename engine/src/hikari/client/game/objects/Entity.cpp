@@ -1,4 +1,5 @@
 #include "hikari/client/game/objects/Entity.hpp"
+#include "hikari/client/game/objects/GameObjectDefinition.hpp"
 #include "hikari/client/game/objects/PalettedAnimatedSprite.hpp"
 #include "hikari/client/game/Shot.hpp"
 #include "hikari/client/game/events/EventBus.hpp"
@@ -252,6 +253,10 @@ namespace hikari {
     }
 
     DeathType::Type Entity::getDeathType() const {
+        if(const auto * definition = getDefinition()) {
+            return static_cast<DeathType::Type>(definition->getDeathType());
+        }
+
         return deathType;
     }
 
