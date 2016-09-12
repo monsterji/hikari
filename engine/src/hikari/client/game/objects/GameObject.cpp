@@ -87,6 +87,14 @@ namespace hikari {
         this->parentId = parentId;
     }
 
+    const GameObjectDefinition * GameObject::getDefinition() const {
+        return definition;
+    }
+
+    void GameObject::setDefinition(const GameObjectDefinition * definition) {
+        this->definition = definition;
+    }
+
     bool GameObject::isActive() const {
         return active;
     }

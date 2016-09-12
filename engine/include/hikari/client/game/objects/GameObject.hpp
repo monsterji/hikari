@@ -62,7 +62,7 @@ namespace hikari {
         int id;
         bool active;
         Id parentId;
-        GameObjectDefinition * definition;
+        const GameObjectDefinition * definition;
 
     protected:
         virtual void onActivated();
@@ -77,6 +77,9 @@ namespace hikari {
 
         Id getParentId() const;
         void setParentId(Id parentId);
+
+        const GameObjectDefinition * getDefinition() const;
+        void setDefinition(const GameObjectDefinition * definition);
 
         bool isActive() const;
         void setActive(bool active);
