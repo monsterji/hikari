@@ -486,10 +486,13 @@ namespace FactoryHelpers {
 
                                         if(deathType == "Nothing") {
                                             // Default; do nothing
+                                            definition->setDeathType(DeathType::Nothing);
                                         } else if(deathType == "Small") {
                                             instance->setDeathType(DeathType::Small);
+                                            definition->setDeathType(DeathType::Small);
                                         } else if(deathType == "Hero") {
                                             instance->setDeathType(DeathType::Hero);
+                                            definition->setDeathType(DeathType::Hero);
                                         }
 
                                         factoryPtr->registerPrototype(name, instance);
