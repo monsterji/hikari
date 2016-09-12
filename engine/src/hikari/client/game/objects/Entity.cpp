@@ -85,6 +85,7 @@ namespace hikari {
         , body(proto.body)
         , activeShots()
     {
+        setDefinition(proto.getDefinition());
         setGravitated(proto.isGravitated());
         setPhasing(proto.isPhasing());
         setPosition(proto.getPosition());
