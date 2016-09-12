@@ -468,16 +468,20 @@ namespace FactoryHelpers {
                                         instance->setDamageId(damageId);
                                         instance->setAgeless(ageless);
                                         instance->setMaximumAge(maximumAge);
+                                        instance->setDefinition(definition.get());
 
                                         if(reflectionType == "none") {
                                             // Default; do nothing
+                                            definition->setReflectionType(GameObjectDefinition::NO_REFLECTION);
                                         } else if(reflectionType == "x") {
                                             instance->setReflectionType(Projectile::REFLECT_X);
-
+                                            definition->setReflectionType(GameObjectDefinition::REFLECT_X);
                                         } else if(reflectionType == "y") {
                                             instance->setReflectionType(Projectile::REFLECT_Y);
+                                            definition->setReflectionType(GameObjectDefinition::REFLECT_Y);
                                         } else if(reflectionType == "xy") {
                                             instance->setReflectionType(Projectile::REFLECT_XY);
+                                            definition->setReflectionType(GameObjectDefinition::REFLECT_XY);
                                         }
 
                                         if(deathType == "Nothing") {

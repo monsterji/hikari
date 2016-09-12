@@ -1,3 +1,4 @@
+#include "hikari/client/game/objects/GameObjectDefinition.hpp"
 #include "hikari/client/game/objects/Projectile.hpp"
 #include "hikari/client/game/objects/Motion.hpp"
 #include "hikari/client/game/objects/motions/LinearMotion.hpp"
@@ -109,6 +110,10 @@ namespace hikari {
     }
 
     Projectile::ReflectionType Projectile::getReflectionType() const {
+        if(const auto * definition = getDefinition()) {
+            return static_cast<Projectile::ReflectionType>(definition->getReflectionType());
+        }
+
         return reflectionType;
     }
 
