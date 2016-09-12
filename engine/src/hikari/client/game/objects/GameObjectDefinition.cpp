@@ -2,16 +2,18 @@
 
 namespace hikari {
 
-    GameObjectDefinition::GameObjectDefinition() {
+    GameObjectDefinition::GameObjectDefinition()
+        : reflectionType{GameObjectDefinition::ReflectionType::NO_REFLECTION}
+    {
 
     }
 
     void GameObjectDefinition::setReflectionType(GameObjectDefinition::ReflectionType type) {
-      reflectionType = type;
+        reflectionType = type;
     }
 
     GameObjectDefinition::ReflectionType GameObjectDefinition::getReflectionType() const {
-      return reflectionType;
+        return reflectionType;
     }
 
 } // hikari
