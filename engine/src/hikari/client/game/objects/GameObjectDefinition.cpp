@@ -3,9 +3,18 @@
 namespace hikari {
 
     GameObjectDefinition::GameObjectDefinition()
-        : reflectionType{GameObjectDefinition::ReflectionType::NO_REFLECTION}
+        : deathType{DeathType::Nothing}
+        , reflectionType{GameObjectDefinition::ReflectionType::NO_REFLECTION}
     {
 
+    }
+
+    void GameObjectDefinition::setDeathType(DeathType::Type type) {
+        deathType = type;
+    }
+
+    DeathType::Type GameObjectDefinition::getDeathType() const {
+        return deathType;
     }
 
     void GameObjectDefinition::setReflectionType(GameObjectDefinition::ReflectionType type) {
