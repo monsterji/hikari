@@ -811,8 +811,8 @@ namespace hikari {
         return bonus;
     }
 
-    void GamePlayState::spawnDeathExplosion(EntityDeathType::Type type, const Vector2<float> & position) {
-        if(type == EntityDeathType::Hero) {
+    void GamePlayState::spawnDeathExplosion(DeathType::Type type, const Vector2<float> & position) {
+        if(type == DeathType::Hero) {
             // This type of explosion shoots in 8 directions. Two explosions per
             // direction; one fast and one slow. It's the death that happens to Rock
             // as well as Robot Masters.
@@ -849,13 +849,13 @@ namespace hikari {
             if(auto sound = audioService.lock()) {
                 sound->playSample("Rockman (Death)");
             }
-        } else if(type == EntityDeathType::Large) {
+        } else if(type == DeathType::Large) {
             if(std::shared_ptr<Particle> clone = world.spawnParticle("Large Explosion")) {
                 clone->setPosition(position);
                 clone->setActive(true);
                 world.queueObjectAddition(clone);
             }
-        } else if(type == EntityDeathType::Small) {
+        } else if(type == DeathType::Small) {
             if(std::shared_ptr<Particle> clone = world.spawnParticle("Medium Explosion")) {
                 clone->setPosition(position);
                 clone->setActive(true);

@@ -10,8 +10,8 @@ namespace hikari {
 
     const int Enemy::DEFAULT_BONUS_TABLE = 0;
 
-    Enemy::Enemy(int id, std::shared_ptr<Room> room) 
-        : Entity(id, room) 
+    Enemy::Enemy(int id, std::shared_ptr<Room> room)
+        : Entity(id, room)
         , brain(nullptr)
         , hitPoints(0.0)
         , damageTickCounter(0)
@@ -22,7 +22,7 @@ namespace hikari {
         setGravitated(true);
         setPhasing(false);
         setFaction(Factions::Enemy);
-        setDeathType(EntityDeathType::Small);
+        setDeathType(DeathType::Small);
     }
 
     Enemy::Enemy(const Enemy& proto)
@@ -32,7 +32,7 @@ namespace hikari {
         , damageTickCounter(0)
         , bonusTableIndex(proto.bonusTableIndex)
         , canLiveOffscreen(proto.canLiveOffscreen)
-    {   
+    {
         setAgeless(true);
         setActive(false);
 
@@ -42,7 +42,7 @@ namespace hikari {
     }
 
     Enemy::~Enemy() {
-        
+
     }
 
     std::unique_ptr<Enemy> Enemy::clone() const {
@@ -75,7 +75,7 @@ namespace hikari {
                 eventManagetPtr->queueEvent(EventDataPtr(new EntityDeathEventData(getId(), EntityDeathEventData::Enemy)));
             }
         }
-        
+
         if(brain) {
             brain->update(dt);
         }

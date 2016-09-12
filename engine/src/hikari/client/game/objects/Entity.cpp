@@ -30,7 +30,7 @@ namespace hikari {
         , room(room)
         , direction(Directions::None)
         , faction(Factions::World)
-        , deathType(EntityDeathType::Nothing)
+        , deathType(DeathType::Nothing)
         , weaponId(0)
         , damageId(0)
         , zIndex(0)
@@ -247,11 +247,11 @@ namespace hikari {
         return faction;
     }
 
-    void Entity::setDeathType(EntityDeathType::Type newDeathType) {
+    void Entity::setDeathType(DeathType::Type newDeathType) {
         deathType = newDeathType;
     }
 
-    EntityDeathType::Type Entity::getDeathType() const {
+    DeathType::Type Entity::getDeathType() const {
         return deathType;
     }
 

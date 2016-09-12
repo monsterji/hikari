@@ -4,7 +4,7 @@
 #include "hikari/client/game/objects/GameObject.hpp"
 #include "hikari/client/game/objects/HitBox.hpp"
 #include "hikari/client/game/objects/Faction.hpp"
-#include "hikari/client/game/objects/EntityDeathType.hpp"
+#include "hikari/client/game/objects/DeathType.hpp"
 #include "hikari/core/game/Movable.hpp"
 #include "hikari/core/game/Renderable.hpp"
 #include "hikari/core/game/Direction.hpp"
@@ -55,7 +55,7 @@ namespace hikari {
 
         Direction direction;
         Faction faction;
-        EntityDeathType::Type deathType;
+        DeathType::Type deathType;
         int weaponId;
         int damageId;
         int zIndex;
@@ -124,8 +124,8 @@ namespace hikari {
         void setFaction(const Faction& newFaction);
         const Faction getFaction() const;
 
-        void setDeathType(EntityDeathType::Type newDeathType);
-        EntityDeathType::Type getDeathType() const;
+        void setDeathType(DeathType::Type newDeathType);
+        DeathType::Type getDeathType() const;
 
         void setWeaponId(int weaponId);
         int getWeaponId() const;

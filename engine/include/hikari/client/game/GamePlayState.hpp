@@ -7,7 +7,7 @@
 #include "hikari/core/game/map/Map.hpp"
 #include "hikari/client/game/events/EventData.hpp"
 #include "hikari/client/game/events/EventListenerDelegate.hpp"
-#include "hikari/client/game/objects/EntityDeathType.hpp"
+#include "hikari/client/game/objects/DeathType.hpp"
 #include "hikari/client/game/objects/BlockSequence.hpp"
 
 #include "hikari/client/game/GameWorld.hpp"
@@ -246,10 +246,10 @@ namespace hikari {
 
         /**
          * Spawns a death explosion -- like when the hero or a boss is defeated.
-         * @param type the EntityDeathType of explosion
+         * @param type the DeathType of explosion
          * @param position where the particles should radiate from
          */
-        void spawnDeathExplosion(EntityDeathType::Type type, const Vector2<float> & position);
+        void spawnDeathExplosion(DeathType::Type type, const Vector2<float> & position);
 
         /**
          * Starts the current stage from the beginning. This is like playing the

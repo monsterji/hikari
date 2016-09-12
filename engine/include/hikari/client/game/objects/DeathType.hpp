@@ -1,14 +1,14 @@
-#ifndef HIKARI_CLIENT_GAME_OBJECTS_ENTITYDEATHTYPE
-#define HIKARI_CLIENT_GAME_OBJECTS_ENTITYDEATHTYPE
+#ifndef HIKARI_CLIENT_GAME_OBJECTS_DEATHTYPE
+#define HIKARI_CLIENT_GAME_OBJECTS_DEATHTYPE
 
 namespace hikari {
 
     /**
-     * EntityDeathType is an enum of values describing the "type" of death an
+     * DeathType is an enum of values describing the "type" of death an
      * Entity should experience. Basically, the kind of explosion that should
      * appear at death.
      */
-    namespace EntityDeathType {
+    namespace DeathType {
         enum Type {
             Nothing,    /// Nothing should appear
             Hurt,       /// The "hurt" marks (like when Rock gets damaged)
@@ -20,4 +20,4 @@ namespace hikari {
 
 } // hikari
 
-#endif // HIKARI_CLIENT_GAME_OBJECTS_ENTITYDEATHTYPE
+#endif // HIKARI_CLIENT_GAME_OBJECTS_DEATHTYPE

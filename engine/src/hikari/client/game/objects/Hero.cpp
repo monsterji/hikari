@@ -49,7 +49,7 @@ namespace hikari {
         , shootingState(nullptr)
         , nextShootingState(nullptr)
     {
-        setDeathType(EntityDeathType::Hero);
+        setDeathType(DeathType::Hero);
 
         body.setGravitated(true);
         body.setHasWorldCollision(true);

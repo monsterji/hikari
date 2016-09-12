@@ -22,7 +22,7 @@
 #include "hikari/client/game/WeaponTable.hpp"
 #include "hikari/client/game/objects/Motion.hpp"
 #include "hikari/client/game/objects/motions/LinearMotion.hpp"
-#include "hikari/client/game/objects/EntityDeathType.hpp"
+#include "hikari/client/game/objects/DeathType.hpp"
 #include "hikari/client/scripting/SquirrelService.hpp"
 #include "hikari/client/scripting/SquirrelUtils.hpp"
 
@@ -275,7 +275,7 @@ namespace FactoryHelpers {
                                         }
 
                                         if(deathType == "Hero") {
-                                            instance->setDeathType(EntityDeathType::Hero);
+                                            instance->setDeathType(DeathType::Hero);
                                         }
 
                                         if(!characteristicsObject.isNull()) {
@@ -487,9 +487,9 @@ namespace FactoryHelpers {
                                         if(deathType == "Nothing") {
                                             // Default; do nothing
                                         } else if(deathType == "Small") {
-                                            instance->setDeathType(EntityDeathType::Small);
+                                            instance->setDeathType(DeathType::Small);
                                         } else if(deathType == "Hero") {
-                                            instance->setDeathType(EntityDeathType::Hero);
+                                            instance->setDeathType(DeathType::Hero);
                                         }
 
                                         factoryPtr->registerPrototype(name, instance);
