@@ -105,10 +105,6 @@ namespace hikari {
         return motion;
     }
 
-    void Projectile::setReflectionType(ReflectionType type) {
-        reflectionType = type;
-    }
-
     Projectile::ReflectionType Projectile::getReflectionType() const {
         if(const auto * definition = getDefinition()) {
             return static_cast<Projectile::ReflectionType>(definition->getReflectionType());

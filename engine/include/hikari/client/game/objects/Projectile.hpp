@@ -45,7 +45,6 @@ namespace hikari {
         void setMotion(const std::shared_ptr<Motion> motion);
         const std::shared_ptr<Motion>& getMotion() const;
 
-        void setReflectionType(ReflectionType type);
         ReflectionType getReflectionType() const;
 
         /**
