@@ -116,15 +116,15 @@ namespace hikari {
                 const BlockTiming & timingStep = timing.at(step);
 
                 for(auto it = std::begin(timingStep.getBlockIndicies()), end = std::end(timingStep.getBlockIndicies()); it != end; it++) {
-                    int id = *it;
-                    auto & entity = blockEntities[id];
+                    int index = *it;
+                    auto & entity = blockEntities[index];
 
-                    blockRects[id].setFillColor({ 32, 255, 32, 196 });
+                    blockRects[index].setFillColor({ 32, 255, 32, 196 });
 
                     if(entity) {
                         entity->setActive(true);
                         entity->setAgeless(false);
-                        world.queueObjectAddition(blockEntities[id]);
+                        world.queueObjectAddition(blockEntities[index]);
                     }
                 }
 
