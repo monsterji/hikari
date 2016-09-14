@@ -1,6 +1,7 @@
 #ifndef HIKARI_CLIENT_GAME_OBJECTS_ENEMYBRAIN
 #define HIKARI_CLIENT_GAME_OBJECTS_ENEMYBRAIN
 
+#include "hikari/client/game/objects/GameObject.hpp"
 #include "hikari/client/game/objects/Enemy.hpp"
 #include "hikari/core/util/Cloneable.hpp"
 
@@ -57,7 +58,7 @@ namespace hikari {
 
         /**
          * Attaches the EnemyBrain to an instance of Enemy.
-         * 
+         *
          * @param host a pointer to an instance of Enemy to attach to
          * @see EnemyBrain::detach
          * @see EnemyBrain::getHost
@@ -89,7 +90,7 @@ namespace hikari {
         /**
          * Called when collisions take place with tiles in the world. Allows for
          * handling of collision response from within a brain.
-         * 
+         *
          * @param body the host's body
          * @param info the collision information
          */
@@ -101,11 +102,11 @@ namespace hikari {
          *
          * @param otherId [description]
          */
-        virtual void handleObjectTouch(int otherId);
+        virtual void handleObjectTouch(GameObject::Id otherId);
 
         /**
          * Updates the brain's logic.
-         * 
+         *
          * @param dt time, in seconds, to update for
          */
         virtual void update(float dt);

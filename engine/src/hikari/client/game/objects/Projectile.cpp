@@ -1,4 +1,5 @@
 #include "hikari/client/game/objects/GameObjectDefinition.hpp"
+#include "hikari/client/game/objects/GameObject.hpp"
 #include "hikari/client/game/objects/Projectile.hpp"
 #include "hikari/client/game/objects/Motion.hpp"
 #include "hikari/client/game/objects/motions/LinearMotion.hpp"
@@ -13,10 +14,9 @@ namespace hikari {
 
     const std::shared_ptr<Motion> Projectile::DeflectedMotion = std::make_shared<LinearMotion>(Vector2<float>(-4.0f, -4.0f));
 
-    Projectile::Projectile(int id, std::shared_ptr<Room> room)
+    Projectile::Projectile(GameObject::Id id, std::shared_ptr<Room> room)
         : Entity(id, room)
         , inert(false)
-        , parentId(-1)
         , reflectionType(NO_REFLECTION)
     {
         body.setGravitated(false);
@@ -26,9 +26,9 @@ namespace hikari {
     Projectile::Projectile(const Projectile& proto)
         : Entity(proto)
         , inert(false)
-        , parentId(proto.parentId)
         , reflectionType(proto.reflectionType)
     {
+        setParentId(proto.getParentId());
         setActive(false);
     }
 
@@ -87,14 +87,6 @@ namespace hikari {
                 }
             }
         }
-    }
-
-    void Projectile::setParentId(int id) {
-        parentId = id;
-    }
-
-    int Projectile::getParentId() const {
-        return parentId;
     }
 
     void Projectile::setMotion(const std::shared_ptr<Motion> motion) {

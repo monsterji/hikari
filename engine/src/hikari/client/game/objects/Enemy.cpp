@@ -10,7 +10,7 @@ namespace hikari {
 
     const int Enemy::DEFAULT_BONUS_TABLE = 0;
 
-    Enemy::Enemy(int id, std::shared_ptr<Room> room)
+    Enemy::Enemy(GameObject::Id id, std::shared_ptr<Room> room)
         : Entity(id, room)
         , brain(nullptr)
         , hitPoints(0.0)
@@ -95,7 +95,7 @@ namespace hikari {
         }
     }
 
-    void Enemy::handleObjectTouch(int otherId) {
+    void Enemy::handleObjectTouch(GameObject::Id otherId) {
         // HIKARI_LOG(debug4) << "I'm being touched by something! My ID = " << getId() << ", Other ID = " << otherId;
         if(brain) {
             brain->handleObjectTouch(otherId);

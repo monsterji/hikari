@@ -2,6 +2,7 @@
 #define HIKARI_CLIENT_ENTITYDAMAGEEVENTDATA
 
 #include "hikari/client/game/events/BaseEventData.hpp"
+#include "hikari/client/game/objects/GameObject.hpp"
 
 namespace hikari {
 
@@ -10,14 +11,14 @@ namespace hikari {
         static const EventType Type;
 
     private:
-        int entityId;
+        GameObject::Id entityId;
         float amount;
-        
+
     public:
-        EntityDamageEventData(int entityId, float amount);
+        EntityDamageEventData(GameObject::Id entityId, float amount);
         virtual ~EntityDamageEventData();
 
-        int getEntityId() const;
+        GameObject::Id getEntityId() const;
         float getAmount() const;
 
         virtual const EventType & getEventType() const;

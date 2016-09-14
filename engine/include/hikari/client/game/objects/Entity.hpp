@@ -102,7 +102,7 @@ namespace hikari {
     public:
         static void enableDebug(const bool &debug);
 
-        Entity(int id, std::shared_ptr<Room> room);
+        Entity(GameObject::Id id, std::shared_ptr<Room> room);
         Entity(const Entity& proto);
         virtual ~Entity();
 

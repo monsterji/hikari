@@ -1,6 +1,7 @@
 #ifndef HIKARI_CLIENT_GAME_OBJECTS_ITEMSPAWNER
 #define HIKARI_CLIENT_GAME_OBJECTS_ITEMSPAWNER
 
+#include "hikari/client/game/objects/GameObject.hpp"
 #include "hikari/client/game/objects/Spawner.hpp"
 
 #include <memory>
@@ -9,10 +10,10 @@
 namespace hikari {
 
     class CollectableItem;
-    
+
     class ItemSpawner : public Spawner {
     private:
-        int spawnedItemId;
+        GameObject::Id spawnedItemId;
         std::string itemName;
         bool canSpawnAgain;
 

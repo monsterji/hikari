@@ -5,6 +5,8 @@
 #include "hikari/core/math/Vector2.hpp"
 #include "hikari/core/game/Direction.hpp"
 
+#include "hikari/client/game/objects/GameObject.hpp"
+
 #include <SFML/Graphics/RenderTarget.hpp>
 
 #include <cstdint>
@@ -21,7 +23,6 @@ namespace sf {
 namespace hikari {
 
     class Room;
-    class GameObject;
     class Hero;
     class CollectableItem;
     class ItemFactory;
@@ -64,7 +65,7 @@ namespace hikari {
         std::list<std::shared_ptr<Projectile>> queuedProjectileRemovals;
         std::vector<std::shared_ptr<Projectile>> activeProjectiles;
 
-        std::unordered_map<int, std::shared_ptr<GameObject>> objectRegistry;
+        std::unordered_map<GameObject::Id, std::shared_ptr<GameObject>> objectRegistry;
         bool gravityEnabled;
 
         // Vector of GameObject version numbers. Incremented each time a
@@ -111,7 +112,7 @@ namespace hikari {
         std::unique_ptr<Particle> spawnParticle(const std::string & name) const;
         std::unique_ptr<Projectile> spawnProjectile(const std::string & name) const;
 
-        const std::weak_ptr<GameObject> getObjectById(int id) const;
+        const std::weak_ptr<GameObject> getObjectById(GameObject::Id id) const;
 
         const std::vector<std::shared_ptr<CollectableItem>> & getActiveItems() const;
         const std::vector<std::shared_ptr<Enemy>> & getActiveEnemies() const;

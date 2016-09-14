@@ -10,7 +10,7 @@
 
 namespace hikari {
 
-    CollectableItem::CollectableItem(int id, std::shared_ptr<Room> room, std::shared_ptr<Effect> effect)
+    CollectableItem::CollectableItem(GameObject::Id id, std::shared_ptr<Room> room, std::shared_ptr<Effect> effect)
         : Entity(id, room)
         , effect(effect)
     {

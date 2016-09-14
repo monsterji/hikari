@@ -1,7 +1,6 @@
 #include "hikari/client/game/GameWorld.hpp"
 #include "hikari/client/game/events/EventBus.hpp"
 #include "hikari/client/game/events/ObjectRemovedEventData.hpp"
-#include "hikari/client/game/objects/GameObject.hpp"
 #include "hikari/client/game/objects/CollectableItem.hpp"
 #include "hikari/client/game/objects/Entity.hpp"
 #include "hikari/client/game/objects/Enemy.hpp"
@@ -455,7 +454,7 @@ namespace hikari {
         return std::unique_ptr<Projectile>(nullptr);
     }
 
-    const std::weak_ptr<GameObject> GameWorld::getObjectById(int id) const {
+    const std::weak_ptr<GameObject> GameWorld::getObjectById(GameObject::Id id) const {
         auto finder = objectRegistry.find(id);
 
         if(finder != std::end(objectRegistry)) {

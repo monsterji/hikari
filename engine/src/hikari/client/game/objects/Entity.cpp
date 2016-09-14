@@ -23,7 +23,7 @@ namespace hikari {
         #endif // HIKARI_DEBUG_ENTITIES
     }
 
-    Entity::Entity(int id, std::shared_ptr<Room> room)
+    Entity::Entity(GameObject::Id id, std::shared_ptr<Room> room)
         : GameObject(id)
         , animatedSprite(new PalettedAnimatedSprite())
         , eventBus()

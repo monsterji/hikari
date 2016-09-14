@@ -5,7 +5,7 @@ namespace hikari {
 
     const EventType EntityDeathEventData::Type = HashedString("EntityDeathEventData").getHash(); // was 0xdeadb33f;
 
-    EntityDeathEventData::EntityDeathEventData(int entityId, EntityType entityType)
+    EntityDeathEventData::EntityDeathEventData(GameObject::Id entityId, EntityType entityType)
         : BaseEventData(0.0f)
         , entityId(entityId)
         , entityType(entityType)
@@ -13,7 +13,7 @@ namespace hikari {
 
     }
 
-    int EntityDeathEventData::getEntityId() const {
+    GameObject::Id EntityDeathEventData::getEntityId() const {
         return entityId;
     }
 

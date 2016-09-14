@@ -200,7 +200,7 @@ namespace hikari {
         };
 
     public:
-        Hero(int id, std::shared_ptr<Room> room);
+        Hero(GameObject::Id id, std::shared_ptr<Room> room);
         virtual ~Hero();
 
         const std::shared_ptr<HeroActionController>& getActionController() const;

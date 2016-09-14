@@ -22,11 +22,10 @@ namespace hikari {
         static const std::shared_ptr<Motion> DeflectedMotion;
         std::shared_ptr<Motion> motion;
         bool inert;
-        int parentId;
         ReflectionType reflectionType;
 
     public:
-        Projectile(int id = GameObject::generateObjectId(), std::shared_ptr<Room> room = nullptr);
+        Projectile(GameObject::Id id = GameObject::generateObjectId(), std::shared_ptr<Room> room = nullptr);
         Projectile(const Projectile& proto);
         virtual ~Projectile();
 
@@ -38,9 +37,6 @@ namespace hikari {
         virtual void handleCollision(Movable& body, CollisionInfo& info);
 
         virtual void onDeath();
-
-        void setParentId(int id);
-        int getParentId() const;
 
         void setMotion(const std::shared_ptr<Motion> motion);
         const std::shared_ptr<Motion>& getMotion() const;

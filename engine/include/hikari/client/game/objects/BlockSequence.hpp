@@ -39,7 +39,7 @@ namespace hikari {
         virtual void onDeactivated();
 
     public:
-        BlockSequence(const BlockSequenceDescriptor & descriptor, GameWorld & world, int id = GameObject::generateObjectId());
+        BlockSequence(const BlockSequenceDescriptor & descriptor, GameWorld & world, GameObject::Id id = GameObject::generateObjectId());
         virtual ~BlockSequence();
 
         virtual void update(float dt);

@@ -12,7 +12,7 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 
 namespace hikari {
-    BlockSequence::BlockSequence(const BlockSequenceDescriptor & descriptor, GameWorld & world, int id)
+    BlockSequence::BlockSequence(const BlockSequenceDescriptor & descriptor, GameWorld & world, GameObject::Id id)
         : GameObject(id)
         , zIndex(0)
         , step(0)

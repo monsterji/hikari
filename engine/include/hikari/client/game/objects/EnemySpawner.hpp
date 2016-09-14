@@ -9,7 +9,7 @@
 #include <string>
 
 namespace hikari {
-    
+
     /**
      * A class responsible for spawning instances of Enemy. EnemySpawners can
      * spawn more than once Enemy instance at a specified rate.
@@ -20,7 +20,7 @@ namespace hikari {
         static const float DEFAULT_SPAWN_RATE;
 
     private:
-        std::vector<int> spawnedEnemyIds;
+        std::vector<GameObject::Id> spawnedEnemyIds;
         std::string enemyType;
         unsigned int spawnLimit;      // How many enemies this spawner will spawn at one time
         float spawnRate;              // How long to wait before spawning another enemy
@@ -32,7 +32,7 @@ namespace hikari {
         void handleObjectRemovedEvent(EventDataPtr event);
 
     public:
-        EnemySpawner(const std::string & enemyType, 
+        EnemySpawner(const std::string & enemyType,
             unsigned int spawnLimit = DEFAULT_SPAWN_LIMIT, float spawnRate = DEFAULT_SPAWN_RATE);
 
         virtual ~EnemySpawner();

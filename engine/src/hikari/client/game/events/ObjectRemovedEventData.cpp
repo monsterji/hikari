@@ -6,14 +6,14 @@ namespace hikari {
 
     const EventType ObjectRemovedEventData::Type = HashedString("ObjectRemovedEventData").getHash();
 
-    ObjectRemovedEventData::ObjectRemovedEventData(int objectId)
+    ObjectRemovedEventData::ObjectRemovedEventData(GameObject::Id objectId)
         : BaseEventData(0.0f)
         , objectId(objectId)
     {
 
     }
 
-    int ObjectRemovedEventData::getObjectId() const {
+    GameObject::Id ObjectRemovedEventData::getObjectId() const {
         return objectId;
     }
 

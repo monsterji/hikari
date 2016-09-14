@@ -10,7 +10,7 @@ namespace hikari {
 
     ItemSpawner::ItemSpawner(const std::string & itemName)
         : Spawner()
-        , spawnedItemId(-1)
+        , spawnedItemId(GameObject::INVALID)
         , itemName(itemName)
         , canSpawnAgain(true)
     {
@@ -29,7 +29,7 @@ namespace hikari {
         if(eventData->getEntityId() == spawnedItemId) {
             HIKARI_LOG(debug4) << "ItemSpawner's item was consumed! id = " << eventData->getEntityId();
             setActive(false);
-        } 
+        }
     }
 
     void ItemSpawner::performAction(GameWorld & world) {
@@ -56,7 +56,7 @@ namespace hikari {
     void ItemSpawner::detachEventListeners(EventBus & EventBus) {
         std::for_each(
             std::begin(eventHandlerDelegates),
-            std::end(eventHandlerDelegates), 
+            std::end(eventHandlerDelegates),
             [&](const std::pair<EventListenerDelegate, EventType> & del) {
                 bool removed = EventBus.removeListener(del.first, del.second);
                 HIKARI_LOG(debug) << "ItemSpawner :: Removing event listener, type = " << del.second << ", succes = " << removed;

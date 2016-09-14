@@ -1,10 +1,10 @@
 #ifndef HIKARI_CLIENT_GAME_OBJECTS_COLLECTABLEITEM
 #define HIKARI_CLIENT_GAME_OBJECTS_COLLECTABLEITEM
 
+#include "hikari/client/game/objects/GameObject.hpp"
 #include "hikari/client/game/objects/Entity.hpp"
 #include "hikari/core/util/Cloneable.hpp"
 #include <memory>
-// #include <oolua.h>
 
 namespace hikari {
 
@@ -17,7 +17,7 @@ namespace hikari {
         std::shared_ptr<Effect> effect;
 
     public:
-        CollectableItem(int id, std::shared_ptr<Room> room, std::shared_ptr<Effect> effect);
+        CollectableItem(GameObject::Id id, std::shared_ptr<Room> room, std::shared_ptr<Effect> effect);
         CollectableItem(const CollectableItem &proto);
         virtual ~CollectableItem();
 

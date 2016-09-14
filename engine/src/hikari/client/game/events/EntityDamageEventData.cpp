@@ -5,7 +5,7 @@ namespace hikari {
 
     const EventType EntityDamageEventData::Type = HashedString("EntityDamageEventData").getHash();
 
-    EntityDamageEventData::EntityDamageEventData(int entityId, float amount)
+    EntityDamageEventData::EntityDamageEventData(GameObject::Id entityId, float amount)
         : BaseEventData(0.0f)
         , entityId(entityId)
         , amount(amount)
@@ -13,7 +13,7 @@ namespace hikari {
 
     }
 
-    int EntityDamageEventData::getEntityId() const {
+    GameObject::Id EntityDamageEventData::getEntityId() const {
         return entityId;
     }
 

@@ -157,7 +157,8 @@ namespace hikari {
             Sqrat::RootTable(vm).Bind(
                 _SC("GameObject"),
                 Sqrat::Class<GameObject, Sqrat::NoConstructor<GameObject>>(vm)
-                .Func(_SC("getId"), &GameObject::getId)
+                // Disabling the use of `getId` for now since it is a struct type.
+                //.Func(_SC("getId"), &GameObject::getId)
                 .Prop(_SC("isActive"), &GameObject::isActive, &GameObject::setActive)
             );
 

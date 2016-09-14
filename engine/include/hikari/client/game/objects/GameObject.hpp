@@ -50,7 +50,7 @@ namespace hikari {
         //
         // Static members
         //
-        static const int generateObjectId();
+        static const Id generateObjectId();
         static const Id INVALID;
 
     private:
@@ -60,7 +60,7 @@ namespace hikari {
     // Class members
     //
     private:
-        int id;
+        Id id;
         bool active;
         Id parentId;
         const GameObjectDefinition * definition;
@@ -70,11 +70,10 @@ namespace hikari {
         virtual void onDeactivated();
 
     public:
-        explicit GameObject(int id = generateObjectId());
-        explicit GameObject(Id id);
+        explicit GameObject(Id id = generateObjectId());
         virtual ~GameObject();
 
-        int getId() const;
+        Id getId() const;
 
         Id getParentId() const;
         void setParentId(Id parentId);
@@ -101,5 +100,19 @@ namespace hikari {
     }
 
 } // hikari
+
+namespace std {
+    template <> struct hash<hikari::GameObject::Id> {
+        std::size_t operator () (const hikari::GameObject::Id & id) const {
+            return static_cast<std::size_t>(id.getIndex() ^ id.getVersion());
+        }
+    };
+
+    template <> struct hash<hikari::GameObject> {
+        std::size_t operator () (const hikari::GameObject & object) const {
+            return static_cast<std::size_t>(object.getId().getIndex() ^ object.getId().getVersion());
+        }
+    };
+} // std
 
 #endif // HIKARI_CLIENT_GAME_GAMEOBJECT

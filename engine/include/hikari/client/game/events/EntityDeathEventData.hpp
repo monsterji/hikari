@@ -2,6 +2,7 @@
 #define HIKARI_CLIENT_ENTITYDEATHEVENTDATA
 
 #include "hikari/client/game/events/BaseEventData.hpp"
+#include "hikari/client/game/objects/GameObject.hpp"
 
 namespace hikari {
 
@@ -18,14 +19,14 @@ namespace hikari {
         };
 
     private:
-        int entityId;
+        GameObject::Id entityId;
         EntityType entityType;
-        
+
     public:
-        explicit EntityDeathEventData(int entityId, EntityType entityType = Unknown);
+        explicit EntityDeathEventData(GameObject::Id entityId, EntityType entityType = Unknown);
         virtual ~EntityDeathEventData();
 
-        int getEntityId() const;
+        GameObject::Id getEntityId() const;
         EntityType getEntityType() const;
 
         virtual const EventType & getEventType() const;

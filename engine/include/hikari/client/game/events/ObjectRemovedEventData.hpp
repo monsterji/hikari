@@ -2,6 +2,7 @@
 #define HIKARI_CLIENT_OBJECTREMOVEDEVENTDATA
 
 #include "hikari/client/game/events/BaseEventData.hpp"
+#include "hikari/client/game/objects/GameObject.hpp"
 
 namespace hikari {
 
@@ -13,17 +14,17 @@ namespace hikari {
         static const EventType Type;
 
     private:
-        int objectId;
-        
+        GameObject::Id objectId;
+
     public:
-        explicit ObjectRemovedEventData(int objectId);
+        explicit ObjectRemovedEventData(GameObject::Id objectId);
         virtual ~ObjectRemovedEventData();
 
         /**
          * Gets the ID of the object that was removed.
          * @return the ID of the removed object
          */
-        int getObjectId() const;
+        GameObject::Id getObjectId() const;
 
         virtual const EventType & getEventType() const;
 

@@ -5,7 +5,7 @@ namespace hikari {
 
     const EventType EntityStateChangeEventData::Type = HashedString("EntityStateChangeEventData").getHash(); // was 0xd11f5747;
 
-    EntityStateChangeEventData::EntityStateChangeEventData(int entityId, const std::string & stateName)
+    EntityStateChangeEventData::EntityStateChangeEventData(GameObject::Id entityId, const std::string & stateName)
         : BaseEventData(0.0f)
         , entityId(entityId)
         , stateName(stateName)
@@ -13,7 +13,7 @@ namespace hikari {
 
     }
 
-    int EntityStateChangeEventData::getEntityId() const {
+    GameObject::Id EntityStateChangeEventData::getEntityId() const {
         return entityId;
     }
 

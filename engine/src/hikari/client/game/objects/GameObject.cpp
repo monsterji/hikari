@@ -55,14 +55,14 @@ namespace hikari {
     int GameObject::nextId = 1000;
 
     /* static */
-    const int  GameObject::generateObjectId() {
-        return nextId++;
+    const GameObject::Id GameObject::generateObjectId() {
+        return GameObject::Id(static_cast<std::int64_t>(nextId++));
     }
 
     /* static */
     const GameObject::Id GameObject::INVALID;
 
-    GameObject::GameObject(int id)
+    GameObject::GameObject(Id id)
         : id(id)
         , active(false)
         , parentId{INVALID}
@@ -75,7 +75,7 @@ namespace hikari {
 
     }
 
-    int GameObject::getId() const {
+    GameObject::Id GameObject::getId() const {
         return id;
     }
 

@@ -29,8 +29,8 @@ namespace hikari {
         bool canLiveOffscreen;
 
     public:
-        Enemy(int id = GameObject::generateObjectId(), std::shared_ptr<Room> room = nullptr);
-        Enemy(const Enemy& proto); 
+        Enemy(GameObject::Id id = GameObject::generateObjectId(), std::shared_ptr<Room> room = nullptr);
+        Enemy(const Enemy& proto);
         virtual ~Enemy();
 
         virtual std::unique_ptr<Enemy> clone() const;
@@ -49,7 +49,7 @@ namespace hikari {
          *
          * @param otherId the ID of the other object
          */
-        virtual void handleObjectTouch(int otherId);
+        virtual void handleObjectTouch(GameObject::Id otherId);
 
         void setBrain(const std::shared_ptr<EnemyBrain> & brain);
         const std::shared_ptr<EnemyBrain>& getBrain() const;

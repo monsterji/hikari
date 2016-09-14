@@ -2,6 +2,7 @@
 #define HIKARI_CLIENT_WEAPONFIREEVENTDATA
 
 #include "hikari/client/game/events/BaseEventData.hpp"
+#include "hikari/client/game/objects/GameObject.hpp"
 #include "hikari/client/game/objects/Faction.hpp"
 #include "hikari/core/game/Direction.hpp"
 #include "hikari/core/math/Vector2.hpp"
@@ -16,16 +17,16 @@ namespace hikari {
 
     private:
         int weaponId;  // id of the weapon to be fired
-        int shooterId; // id of the entity that shot this weapon
+        GameObject::Id shooterId; // id of the entity that shot this weapon
         Faction faction;
         Direction direction; //weaponId, ownerId, faction, position, direction
         Vector2<float> position; // position where this weapon was fired
     public:
-        WeaponFireEventData(int weaponId, int shooterId, Faction faction, Direction direction, const Vector2<float>& position);
+        WeaponFireEventData(int weaponId, GameObject::Id shooterId, Faction faction, Direction direction, const Vector2<float>& position);
         virtual ~WeaponFireEventData();
 
         int getWeaponId() const;
-        int getShooterId() const;
+        GameObject::Id getShooterId() const;
         Faction getFaction() const;
         Direction getDirection() const;
         const Vector2<float>& getPosition() const;

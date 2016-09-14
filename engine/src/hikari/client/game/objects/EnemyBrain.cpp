@@ -8,7 +8,7 @@ namespace hikari {
     EnemyBrain::EnemyBrain()
         :host(nullptr)
     {
-        
+
     }
 
     EnemyBrain::EnemyBrain(const EnemyBrain & proto)
@@ -53,7 +53,7 @@ namespace hikari {
         // Does nothing
     }
 
-    void EnemyBrain::handleObjectTouch(int otherId) {
+    void EnemyBrain::handleObjectTouch(GameObject::Id otherId) {
         // Does nothing
     }
 

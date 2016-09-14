@@ -1550,7 +1550,7 @@ namespace hikari {
                 spawnDeathExplosion(hero->getDeathType(), hero->getPosition());
             }
         } else if(eventData->getEntityType() == EntityDeathEventData::Enemy) {
-            int entityId = eventData->getEntityId();
+            auto entityId = eventData->getEntityId();
             HIKARI_LOG(debug2) << "An enemy died! id = " << entityId;
 
             auto enemyPtr = std::dynamic_pointer_cast<Enemy>(world.getObjectById(entityId).lock());

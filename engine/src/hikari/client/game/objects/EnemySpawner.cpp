@@ -37,7 +37,7 @@ namespace hikari {
         // When an enemy "dies" it means that we can potentially spawn another
         // one when we wake up.
 
-        int deadEntityId = eventData->getObjectId();
+        auto deadEntityId = eventData->getObjectId();
 
         if(std::find(std::begin(spawnedEnemyIds), std::end(spawnedEnemyIds), deadEntityId) != std::end(spawnedEnemyIds)) {
             HIKARI_LOG(debug4) << "EnemySpawner's enemy was consumed! id = " << eventData->getObjectId();
@@ -45,12 +45,12 @@ namespace hikari {
             spawnedEnemyIds.erase(
                 std::remove(std::begin(spawnedEnemyIds), std::end(spawnedEnemyIds), deadEntityId)
             );
-        } 
+        }
     }
 
     void EnemySpawner::performAction(GameWorld & world) {
         if(auto spawnedObject = world.spawnEnemy(enemyType)) {
-            int objectId = spawnedObject->getId();
+            auto objectId = spawnedObject->getId();
             spawnedObject->reset();
 
             if(const auto brain = spawnedObject->getBrain()) {
@@ -81,7 +81,7 @@ namespace hikari {
     void EnemySpawner::detachEventListeners(EventBus & EventBus) {
         std::for_each(
             std::begin(eventHandlerDelegates),
-            std::end(eventHandlerDelegates), 
+            std::end(eventHandlerDelegates),
             [&](const std::pair<EventListenerDelegate, EventType> & del) {
                 bool removed = EventBus.removeListener(del.first, del.second);
                 HIKARI_LOG(debug) << "EnemySpawner :: Removing event listener, type = " << del.second << ", succes = " << removed;
