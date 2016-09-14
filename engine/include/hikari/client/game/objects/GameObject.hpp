@@ -3,6 +3,7 @@
 
 #include "hikari/core/game/Updatable.hpp"
 #include <cstdint>
+#include <iostream>
 
 namespace hikari {
 
@@ -88,6 +89,16 @@ namespace hikari {
 
         virtual void reset();
     };
+
+    inline std::ostream &operator << (std::ostream & out, const GameObject::Id & id) {
+        out << "GameObject::Id(" << id.getIndex() << "." << id.getVersion() << ")";
+        return out;
+    }
+
+    inline std::ostream &operator << (std::ostream & out, const GameObject & object) {
+        out << "GameObject(" << object.getId() << ")";
+        return out;
+    }
 
 } // hikari
 
