@@ -62,8 +62,8 @@ namespace hikari {
     //
     private:
         Id id;
-        bool active;
         Id parentId;
+        bool active;
         const GameObjectDefinition * definition;
         EventBus * eventBus;
 
@@ -73,6 +73,7 @@ namespace hikari {
 
     public:
         explicit GameObject(Id id = generateObjectId());
+        GameObject(const GameObject & other);
         virtual ~GameObject();
 
         Id getId() const;

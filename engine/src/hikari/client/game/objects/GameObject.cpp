@@ -64,10 +64,20 @@ namespace hikari {
 
     GameObject::GameObject(Id id)
         : id(id)
-        , active(false)
         , parentId{INVALID}
+        , active(false)
         , definition{nullptr}
         , eventBus{nullptr}
+    {
+
+    }
+
+    GameObject::GameObject(const GameObject & other)
+        : id(generateObjectId()) // TODO: Need the manager to assign an ID so it can be recycled.
+        , parentId{other.parentId}
+        , active{other.active}
+        , definition{other.definition}
+        , eventBus{other.eventBus}
     {
 
     }
