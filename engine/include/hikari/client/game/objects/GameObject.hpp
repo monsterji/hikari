@@ -80,8 +80,8 @@ namespace hikari {
         Id getParentId() const;
         void setParentId(Id parentId);
 
-        const GameObjectDefinition * getDefinition() const;
-        void setDefinition(const GameObjectDefinition * definition);
+        const GameObjectDefinition * const getDefinition() const;
+        void setDefinition(const GameObjectDefinition * const definition);
 
         EventBus * const getEventBus() const;
         void setEventBus(EventBus * const eventBus);

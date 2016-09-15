@@ -88,11 +88,11 @@ namespace hikari {
         this->parentId = parentId;
     }
 
-    const GameObjectDefinition * GameObject::getDefinition() const {
+    const GameObjectDefinition * const GameObject::getDefinition() const {
         return definition;
     }
 
-    void GameObject::setDefinition(const GameObjectDefinition * definition) {
+    void GameObject::setDefinition(const GameObjectDefinition * const definition) {
         this->definition = definition;
     }
 
