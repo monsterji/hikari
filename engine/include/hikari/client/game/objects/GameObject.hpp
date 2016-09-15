@@ -7,6 +7,7 @@
 
 namespace hikari {
 
+    class EventBus;
     class GameObjectDefinition;
     class GameWorld;
 
@@ -64,6 +65,7 @@ namespace hikari {
         bool active;
         Id parentId;
         const GameObjectDefinition * definition;
+        EventBus * eventBus;
 
     protected:
         virtual void onActivated();
@@ -80,6 +82,9 @@ namespace hikari {
 
         const GameObjectDefinition * getDefinition() const;
         void setDefinition(const GameObjectDefinition * definition);
+
+        EventBus * const getEventBus() const;
+        void setEventBus(EventBus * const eventBus);
 
         bool isActive() const;
         void setActive(bool active);

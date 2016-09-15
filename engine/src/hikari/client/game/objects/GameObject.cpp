@@ -67,6 +67,7 @@ namespace hikari {
         , active(false)
         , parentId{INVALID}
         , definition{nullptr}
+        , eventBus{nullptr}
     {
 
     }
@@ -93,6 +94,14 @@ namespace hikari {
 
     void GameObject::setDefinition(const GameObjectDefinition * definition) {
         this->definition = definition;
+    }
+
+    EventBus * const GameObject::getEventBus() const {
+        return eventBus;
+    }
+
+    void GameObject::setEventBus(EventBus * const eventBus) {
+        this->eventBus = eventBus;
     }
 
     bool GameObject::isActive() const {
