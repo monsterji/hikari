@@ -65,7 +65,7 @@ namespace hikari {
     GameObject::GameObject(Id id)
         : id(id)
         , parentId{INVALID}
-        , active(false)
+        , activeFlag(false)
         , definition{nullptr}
         , eventBus{nullptr}
     {
@@ -73,9 +73,9 @@ namespace hikari {
     }
 
     GameObject::GameObject(const GameObject & other)
-        : id(generateObjectId()) // TODO: Need the manager to assign an ID so it can be recycled.
+        : id{INVALID} // TODO: Need the manager to assign an ID so it can be recycled.
         , parentId{other.parentId}
-        , active{other.active}
+        , activeFlag{other.activeFlag}
         , definition{other.definition}
         , eventBus{other.eventBus}
     {
@@ -115,14 +115,14 @@ namespace hikari {
     }
 
     bool GameObject::isActive() const {
-        return active;
+        return activeFlag;
     }
 
-    void GameObject::setActive(bool active) {
-        if(this->active != active) {
-            this->active = active;
+    void GameObject::setActive(bool activeFlag) {
+        if(this->activeFlag != activeFlag) {
+            this->activeFlag = activeFlag;
 
-            if(this->active) {
+            if(this->activeFlag) {
                 onActivated();
             } else {
                 onDeactivated();

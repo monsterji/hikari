@@ -61,9 +61,15 @@ namespace hikari {
     // Class members
     //
     private:
+        // The order of the members should be as follows:
+        // - IDs
+        // - Flags
+        // - Pointers
+        // - Fixed-width numbers
+        // - Structs
         Id id;
         Id parentId;
-        bool active;
+        bool activeFlag;
         const GameObjectDefinition * definition;
         EventBus * eventBus;
 
@@ -88,7 +94,7 @@ namespace hikari {
         void setEventBus(EventBus * const eventBus);
 
         bool isActive() const;
-        void setActive(bool active);
+        void setActive(bool activeFlag);
 
         virtual void update(float dt);
 
