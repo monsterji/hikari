@@ -1,6 +1,9 @@
 #ifndef HIKARI_CLIENT_GAME_GAMEOBJECT
 #define HIKARI_CLIENT_GAME_GAMEOBJECT
 
+#include "hikari/client/game/objects/GameObjectUtils.hpp"
+
+#include "hikari/core/game/Direction.hpp"
 #include "hikari/core/game/Updatable.hpp"
 
 #include <cstdint>
@@ -14,13 +17,15 @@ namespace hikari {
 
     class GameObject : public Updatable {
     public:
+        friend class GameObjectUtils;
+
         /**
          * An Id struct, borrowed from the EntityX framework. It tracks
-         * and ID according to its index and version. Each time an index
+         * an ID according to its index and version. Each time an index
          * is recycled, the version is incremented. Using these two
          * numbers you can determine if you're holding an outdated Id.
          *
-         * This isu sed instead of pointers which have to nullified, since
+         * This is used instead of pointers which have to be nullified, since
          * the pointed-to object could be destroyed without notifiying the
          * pointer owner.
          */
@@ -76,6 +81,8 @@ namespace hikari {
         bool obstacleFlag; // Does this object act like an obstacle?
         bool shieldFlag;   // Does this object deflect projectiles right now?
         bool ageFlag;      // Does this object experience aging?
+
+        Direction direction;
 
         const GameObjectDefinition * definition;
         EventBus * eventBus;

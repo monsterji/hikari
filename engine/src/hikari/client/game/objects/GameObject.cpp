@@ -69,6 +69,7 @@ namespace hikari {
         , obstacleFlag(false)
         , shieldFlag(false)
         , ageFlag(false)
+        , direction{Directions::None}
         , definition{nullptr}
         , eventBus{nullptr}
     {
@@ -82,6 +83,7 @@ namespace hikari {
         , obstacleFlag{other.obstacleFlag}
         , shieldFlag{other.shieldFlag}
         , ageFlag{other.ageFlag}
+        , direction{other.direction}
         , definition{other.definition}
         , eventBus{other.eventBus}
     {
