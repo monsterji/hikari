@@ -66,6 +66,9 @@ namespace hikari {
         : id(id)
         , parentId{INVALID}
         , activeFlag(false)
+        , obstacleFlag(false)
+        , shieldFlag(false)
+        , ageFlag(false)
         , definition{nullptr}
         , eventBus{nullptr}
     {
@@ -76,6 +79,9 @@ namespace hikari {
         : id{INVALID} // TODO: Need the manager to assign an ID so it can be recycled.
         , parentId{other.parentId}
         , activeFlag{other.activeFlag}
+        , obstacleFlag{other.obstacleFlag}
+        , shieldFlag{other.shieldFlag}
+        , ageFlag{other.ageFlag}
         , definition{other.definition}
         , eventBus{other.eventBus}
     {

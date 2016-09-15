@@ -2,6 +2,7 @@
 #define HIKARI_CLIENT_GAME_GAMEOBJECT
 
 #include "hikari/core/game/Updatable.hpp"
+
 #include <cstdint>
 #include <iostream>
 
@@ -64,12 +65,18 @@ namespace hikari {
         // The order of the members should be as follows:
         // - IDs
         // - Flags
-        // - Pointers
+        // - Enums
         // - Fixed-width numbers
+        // - Pointers
         // - Structs
         Id id;
         Id parentId;
-        bool activeFlag;
+
+        bool activeFlag;   // Is this object active right now?
+        bool obstacleFlag; // Does this object act like an obstacle?
+        bool shieldFlag;   // Does this object deflect projectiles right now?
+        bool ageFlag;      // Does this object experience aging?
+
         const GameObjectDefinition * definition;
         EventBus * eventBus;
 
