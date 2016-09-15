@@ -52,7 +52,7 @@ namespace hikari {
     }
 
     /* static */
-    int GameObject::nextId = 1000;
+    std::uint64_t GameObject::nextId = 1000;
 
     /* static */
     const GameObject::Id GameObject::generateObjectId() {

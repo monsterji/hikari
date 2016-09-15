@@ -55,7 +55,7 @@ namespace hikari {
         static const Id INVALID;
 
     private:
-        static int nextId;
+        static std::uint64_t nextId;
 
     //
     // Class members
