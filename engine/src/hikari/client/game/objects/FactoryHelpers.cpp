@@ -375,6 +375,7 @@ namespace FactoryHelpers {
                             );
 
                             auto instance = std::make_shared<Particle>(static_cast<float>(maximumAge));
+                            auto definition = std::unique_ptr<hikari::GameObjectDefinition>(new GameObjectDefinition());
 
                             auto animationSetPtr = animationSetCache->get(animationSet);
                             auto spriteTexture = imageCache->get(animationSetPtr->getImageFileName());
@@ -383,6 +384,10 @@ namespace FactoryHelpers {
                             instance->setSpriteTexture(spriteTexture);
                             instance->setBoundingBox(boundingBox);
                             instance->setCurrentAnimation(animationName);
+
+                            instance->setDefinition(definition.get());
+
+                            definition->setMaximumAge(maximumAge);
 
                             factoryPtr->registerPrototype(name, instance);
                         }

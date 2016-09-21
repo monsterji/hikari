@@ -15,8 +15,13 @@ namespace hikari {
         };
 
     private:
+        // - Enums
+        // - Fixed-width numbers
+
         DeathType::Type deathType;
         ReflectionType reflectionType;
+
+        float maximumAge;
 
     public:
         GameObjectDefinition();
@@ -26,6 +31,9 @@ namespace hikari {
 
         void setReflectionType(ReflectionType type);
         ReflectionType getReflectionType() const;
+
+        void setMaximumAge(float maximumAge);
+        float getMaximumAge() const;
     };
 
 } // hikari

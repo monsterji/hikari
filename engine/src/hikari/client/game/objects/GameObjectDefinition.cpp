@@ -5,6 +5,7 @@ namespace hikari {
     GameObjectDefinition::GameObjectDefinition()
         : deathType{DeathType::Nothing}
         , reflectionType{GameObjectDefinition::ReflectionType::NO_REFLECTION}
+        , maximumAge{0}
     {
 
     }
@@ -23,6 +24,14 @@ namespace hikari {
 
     GameObjectDefinition::ReflectionType GameObjectDefinition::getReflectionType() const {
         return reflectionType;
+    }
+
+    void GameObjectDefinition::setMaximumAge(float maximumAge) {
+        this->maximumAge = maximumAge;
+    }
+
+    float GameObjectDefinition::getMaximumAge() const {
+        return maximumAge;
     }
 
 } // hikari
