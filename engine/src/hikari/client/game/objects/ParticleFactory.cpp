@@ -1,4 +1,5 @@
 #include "hikari/client/game/objects/ParticleFactory.hpp"
+#include "hikari/client/game/objects/GameObjectDefinition.hpp"
 #include "hikari/client/game/objects/GameObject.hpp"
 #include "hikari/client/game/objects/Particle.hpp"
 
@@ -13,10 +14,11 @@ namespace hikari {
         , animationSetCache(animationSetCache)
         , imageCache(imageCache)
         , prototypeRegistry()
+        , definitionRegistry()
     {
-         
+
     }
-    
+
     ParticleFactory::~ParticleFactory() {
 
     }
@@ -35,6 +37,14 @@ namespace hikari {
     void ParticleFactory::registerPrototype(const std::string & prototypeName, const std::shared_ptr<Particle> & instance) {
         if(prototypeRegistry.find(prototypeName) == std::end(prototypeRegistry)) {
             prototypeRegistry.insert(std::make_pair(prototypeName, instance));
+        } else {
+            // Already registered; exception?
+        }
+    }
+
+    void ParticleFactory::registerDefinition(const std::string & name, std::unique_ptr<GameObjectDefinition> && definition) {
+        if(definitionRegistry.find(name) == std::end(definitionRegistry)) {
+            definitionRegistry.insert(std::make_pair(name, std::move(definition)));
         } else {
             // Already registered; exception?
         }

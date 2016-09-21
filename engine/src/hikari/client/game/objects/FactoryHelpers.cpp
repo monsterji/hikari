@@ -390,6 +390,7 @@ namespace FactoryHelpers {
                             definition->setMaximumAge(maximumAge);
 
                             factoryPtr->registerPrototype(name, instance);
+                            factoryPtr->registerDefinition(name, std::move(definition));
                         }
                     }
 

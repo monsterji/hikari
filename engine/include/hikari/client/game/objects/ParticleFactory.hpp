@@ -9,6 +9,7 @@
 
 namespace hikari {
 
+    class GameObjectDefinition;
     class AnimationSetCache;
     class ImageCache;
     class Particle;
@@ -21,6 +22,7 @@ namespace hikari {
         std::weak_ptr<AnimationSetCache> animationSetCache;
         std::weak_ptr<ImageCache> imageCache;
         std::unordered_map<std::string, std::shared_ptr<Particle>> prototypeRegistry;
+        std::unordered_map<std::string, std::unique_ptr<GameObjectDefinition>> definitionRegistry;
 
     public:
         //
@@ -36,6 +38,7 @@ namespace hikari {
         std::unique_ptr<Particle> create(const std::string& enemyType);
 
         void registerPrototype(const std::string & prototypeName, const std::shared_ptr<Particle> & instancee);
+        void registerDefinition(const std::string & name, std::unique_ptr<GameObjectDefinition> && definition);
     };
 
 } // hikari
