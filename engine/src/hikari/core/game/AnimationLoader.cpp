@@ -43,7 +43,7 @@ namespace hikari {
         AnimationLoader::imageCache = imageCache;
     }
 
-    std::shared_ptr<Animation> AnimationLoader::load(const std::string &fileName) {
+    std::unique_ptr<Animation> AnimationLoader::load(const std::string &fileName) {
         if(PhysFS::exists(fileName)) {
             Json::Value root = JsonUtils::loadJson(fileName);
             return loadFromJson(root);
@@ -52,21 +52,21 @@ namespace hikari {
         }
     }
 
-    std::shared_ptr<AnimationSet> AnimationLoader::loadSet(const std::string &fileName) {
+    std::unique_ptr<AnimationSet> AnimationLoader::loadSet(const std::string &fileName) {
         if(PhysFS::exists(fileName)) {
             Json::Value root = JsonUtils::loadJson(fileName);
 
             // Extract name and image file path
             std::string name = root[PROPERTY_NAME].asString();
             std::string imageFileName = root[PROPERTY_IMAGE_FILE_NAME].asString();
-            std::shared_ptr<sf::Texture> texture;
+            std::unique_ptr<sf::Texture> texture;
 
             if(auto cache = imageCache.lock()) {
                 texture = cache->get(imageFileName);
             }
 
-            std::shared_ptr<AnimationSet> resultSet =
-                std::shared_ptr<AnimationSet>(new AnimationSet(name, imageFileName, texture));
+            std::unique_ptr<AnimationSet> resultSet =
+                std::unique_ptr<AnimationSet>(new AnimationSet(name, imageFileName, texture));
 
             // Extract animations
             const Json::Value animations = root[PROPERTY_ANIMATIONS];
@@ -77,7 +77,7 @@ namespace hikari {
                 const Json::Value animationJson = animations[animationName];
 
                 if(animationJson.isObject()) {
-                    std::shared_ptr<Animation> animation = loadFromJson(animationJson);
+                    std::unique_ptr<Animation> animation = loadFromJson(animationJson);
 
                     if(animation) {
                         // TODO: Check to see if any of these fail
@@ -104,11 +104,11 @@ namespace hikari {
         }
     }
 
-    std::shared_ptr<Animation> AnimationLoader::loadFromJsonObject(const Json::Value &json) {
+    std::unique_ptr<Animation> AnimationLoader::loadFromJsonObject(const Json::Value &json) {
         return loadFromJson(json);
     }
 
-    std::shared_ptr<Animation> AnimationLoader::loadFromJson(const Json::Value &json) {
+    std::unique_ptr<Animation> AnimationLoader::loadFromJson(const Json::Value &json) {
         //Json::Value root = JsonUtils::loadJson(fileName);
 
         if(!json.isNull()) {
@@ -151,7 +151,7 @@ namespace hikari {
                     frames.push_back(Frame(rectangle, length, hotspot));
                 }
 
-                return std::shared_ptr<Animation>(new Animation(frames, repeat, keyframe, syncGroup));
+                return std::unique_ptr<Animation>(new Animation(frames, repeat, keyframe, syncGroup));
             } else {
                 throw std::runtime_error("Problem loading animation from JSON: the animation has no frames.");
             }

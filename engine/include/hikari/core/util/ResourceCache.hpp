@@ -14,28 +14,29 @@ namespace hikari {
     template<typename T>
     class HIKARI_API ResourceCache {
     public:
-        typedef std::shared_ptr<T> Resource;
+        typedef T ResourceType;
+        typedef std::unique_ptr<T> Resource;
         typedef std::unordered_map<std::string, Resource> ResourceMap;
 
         virtual ~ResourceCache() { }
 
-        Resource get(const std::string &fileName) {
+        const ResourceType * get(const std::string &fileName) {
             auto it = resources.find(fileName);
             if(it != resources.end()) {
-                return it->second;
+                return it->second.get();
             } else {
                 cacheResource(fileName, loadResource(fileName));
                 return get(fileName);
             }
         }
     protected:
-        virtual Resource loadResource(const std::string &fileName) = 0;
+        virtual Resource loadResource(const std::string & fileName) = 0;
 
-        void cacheResource(const std::string &key, const Resource &resourcePtr) {
+        void cacheResource(const std::string &key, const Resource && resourcePtr) {
             resources.insert(std::make_pair(key, resourcePtr));
         }
 
-    private: 
+    private:
         ResourceMap resources;
     };
 

@@ -24,7 +24,7 @@ namespace hikari {
 
     private:
         std::string currentAnimation;
-        std::weak_ptr<AnimationSet> animationSet;
+        const AnimationSet * animationSet;
         SpriteAnimator animator;
         bool isXAxisFlipped;
         bool isYAxisFlipped;
@@ -42,10 +42,10 @@ namespace hikari {
         virtual void render(sf::RenderTarget &target) const;
 
         void setAnimation(const std::string & animationName);
-        void setAnimationSet(const std::weak_ptr<AnimationSet> & animationSetPtr);
+        void setAnimationSet(const AnimationSet * animationSetPtr);
 
         const std::string & getAnimation() const;
-        const std::weak_ptr<AnimationSet> getAnimationSet() const;
+        const AnimationSet * getAnimationSet() const;
 
         bool isXFlipped() const;
         void setXFlipped(bool isFlipped);
@@ -80,7 +80,7 @@ namespace hikari {
          *
          * @see pause()
          * @see unapuse()
-         * 
+         *
          * @return true if playback is paused, false otherwise
          */
         bool isPaused() const;

@@ -10,7 +10,7 @@ namespace hikari {
 
     }
 
-    AnimationSetCache::Resource AnimationSetCache::loadResource(const std::string &fileName) {
+    AnimationSetCache::Resource AnimationSetCache::loadResource(const std::string & fileName) {
         HIKARI_LOG(debug) << "Caching animation set: " << fileName;
 
         Resource animationSet;

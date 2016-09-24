@@ -13,14 +13,14 @@ namespace hikari {
     const bool ImageCache::USE_MASKING = true;
     const bool ImageCache::NO_MASKING = false;
 
-    ImageCache::ImageCache(bool smoothing, bool masking, const sf::Color &mask)
+    ImageCache::ImageCache(bool smoothing, bool masking, const sf::Color & mask)
         : enableSmoothing(smoothing)
         , enableMask(masking)
-        , maskColor(mask) { 
+        , maskColor(mask) {
 
     }
 
-    ImageCache::Resource ImageCache::loadResource(const std::string &fileName) {
+    const ImageCache::Resource ImageCache::loadResource(const std::string & fileName) {
         HIKARI_LOG(debug) << "Caching image: " << fileName;
 
         Resource texture(new sf::Texture());

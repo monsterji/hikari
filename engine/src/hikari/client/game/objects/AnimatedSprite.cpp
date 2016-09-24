@@ -32,7 +32,7 @@ namespace hikari {
     }
 
     AnimatedSprite::~AnimatedSprite() {
-        
+
     }
 
     void AnimatedSprite::update(float dt) {
@@ -54,17 +54,17 @@ namespace hikari {
          }
     }
 
-    void AnimatedSprite::setAnimationSet(const std::weak_ptr<AnimationSet> & animationSetPtr) {
-        if(!animationSetPtr.expired()) {
+    void AnimatedSprite::setAnimationSet(const AnimationSet* animationSetPtr) {
+        if(animationSetPtr) {
             animationSet = animationSetPtr;
 
-            if(auto animSet = animationSet.lock()) {
+            //if(auto animSet = animationSet.lock()) {
                 auto & texture = animSet->getTexture();
-                
+
                 if(texture) {
                     sprite.setTexture(*texture.get());
                 }
-            }
+            //}
         }
     }
 
@@ -72,7 +72,7 @@ namespace hikari {
         return currentAnimation;
     }
 
-    const std::weak_ptr<AnimationSet> AnimatedSprite::getAnimationSet() const {
+    const AnimationSet * AnimatedSprite::getAnimationSet() const {
         return animationSet;
     }
 

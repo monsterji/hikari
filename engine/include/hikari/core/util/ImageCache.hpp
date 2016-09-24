@@ -23,10 +23,10 @@ namespace hikari {
         sf::Color maskColor;
 
     protected:
-        virtual ImageCache::Resource loadResource(const std::string &fileName);
+        virtual ImageCache::Resource loadResource(const std::string & fileName);
 
     public:
-        ImageCache(bool smoothing, bool masking, const sf::Color &mask = sf::Color(255, 0, 255));
+        ImageCache(bool smoothing, bool masking, const sf::Color & mask = sf::Color(255, 0, 255));
 
         virtual ~ImageCache() { }
     };

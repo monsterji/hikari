@@ -18,7 +18,7 @@ namespace hikari {
         std::shared_ptr<AnimationLoader> loader;
 
     protected:
-        virtual AnimationSetCache::Resource loadResource(const std::string &fileName);
+        virtual AnimationSetCache::Resource loadResource(const std::string & fileName);
 
     public:
         AnimationSetCache(const std::shared_ptr<AnimationLoader> & loader);
