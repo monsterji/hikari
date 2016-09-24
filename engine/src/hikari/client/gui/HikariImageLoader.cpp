@@ -15,11 +15,11 @@ namespace gui {
     }
 
     gcn::Image* HikariImageLoader::load(const std::string& filename, bool convertToDisplayFormat) {
-        ImageCache::Resource loadedImage = loadTextureFromCache(filename);
+        auto loadedImage = loadTextureFromCache(filename);
         gcn::Image * image = nullptr;
 
         if(loadedImage) {
-            image = new gcn::SFMLImage(loadedImage.get(), false);
+            image = new gcn::SFMLImage(const_cast<ImageCache::ResourceType *>(loadedImage), false);
 
             if (convertToDisplayFormat) {
                 image->convertToDisplayFormat();
@@ -29,8 +29,8 @@ namespace gui {
         return image;
     }
 
-    ImageCache::Resource HikariImageLoader::loadTextureFromCache(const std::string& filename) {
-        ImageCache::Resource loadedImage;
+    const ImageCache::ResourceType * HikariImageLoader::loadTextureFromCache(const std::string& filename) {
+        const ImageCache::ResourceType * loadedImage = nullptr;
 
         if(auto cache = imageCache.lock()) {
             loadedImage = cache->get(filename);

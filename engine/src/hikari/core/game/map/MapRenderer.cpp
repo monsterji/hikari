@@ -18,7 +18,7 @@ namespace hikari {
     bool MapRenderer::isDebugForceRenderingEnabled = false;
     const int MapRenderer::TILE_OVERDRAW = 1;
 
-    MapRenderer::MapRenderer(const RoomPtr &room, const TileDataPtr &tileData)
+    MapRenderer::MapRenderer(const RoomPtr &room, const Tileset * tileData)
         : room(room)
         , tileData(tileData)
         , tileSprite()
@@ -53,13 +53,13 @@ namespace hikari {
         return room;
     }
 
-    void MapRenderer::setTileData(const TileDataPtr &tileData) {
+    void MapRenderer::setTileData(const Tileset * tileData) {
         this->tileData = tileData;
         tileSprite.setTexture(*(tileData->getTexture()));
         cullTiles();
     }
 
-    TileDataPtr MapRenderer::getTileData() const {
+    const Tileset * MapRenderer::getTileData() const {
         return tileData;
     }
 

@@ -2,13 +2,13 @@
 
 namespace hikari {
 
-    const AnimationPtr AnimationSet::NULL_ANIMATION = AnimationPtr();
-
-    AnimationSet::AnimationSet(const std::string& name, const std::string& imageFileName, const std::shared_ptr<sf::Texture> & texture)
+    AnimationSet::AnimationSet(const std::string& name, const std::string& imageFileName, const sf::Texture * texture)
         : name(name)
         , imageFileName(imageFileName)
         , texture(texture)
-        , animationMap() {
+        , animationMap()
+        , aliases()
+    {
 
     }
 
@@ -20,24 +20,30 @@ namespace hikari {
         return imageFileName;
     }
 
-    const std::shared_ptr<sf::Texture> & AnimationSet::getTexture() const {
+    const sf::Texture * AnimationSet::getTexture() const {
         return texture;
     }
 
-    bool AnimationSet::add(const std::string& name, const AnimationPtr& animation) {
+    bool AnimationSet::add(const std::string& name, AnimationPtr && animation) {
         if(has(name)) {
             return false;
         }
 
         animationMap.insert(
-            std::make_pair(name, animation)
+            std::make_pair(name, std::move(animation))
         );
 
         return true;
     }
 
+    bool AnimationSet::addAlias(const std::string& name, const std::string& alias) {
+        return aliases.insert(
+            std::make_pair(alias, name)
+        ).second;
+    }
+
     bool AnimationSet::has(const std::string& name) const {
-        return animationMap.find(name) != animationMap.end();
+        return aliases.find(name) != aliases.end() || animationMap.find(name) != animationMap.end();
     }
 
     bool AnimationSet::remove(const std::string& name) {
@@ -46,12 +52,24 @@ namespace hikari {
         return true;
     }
 
-    const AnimationPtr& AnimationSet::get(const std::string& name) {
+    bool AnimationSet::removeAlias(const std::string& alias) {
+        aliases.erase(alias);
+
+        return true;
+    }
+
+    const Animation * AnimationSet::get(const std::string & name) const {
         if(has(name)) {
-            return animationMap.find(name)->second;
+            const auto & alias = aliases.find(name);
+
+            if(alias != aliases.end()) {
+                return animationMap.find(alias->second)->second.get();
+            }
+
+            return animationMap.find(name)->second.get();
         }
 
-        return NULL_ANIMATION;
+        return nullptr;
     }
 
 } // hikari

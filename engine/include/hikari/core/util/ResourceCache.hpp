@@ -32,8 +32,8 @@ namespace hikari {
     protected:
         virtual Resource loadResource(const std::string & fileName) = 0;
 
-        void cacheResource(const std::string &key, const Resource && resourcePtr) {
-            resources.insert(std::make_pair(key, resourcePtr));
+        void cacheResource(const std::string &key, Resource && resourcePtr) {
+            resources.insert(std::make_pair(key, std::move(resourcePtr)));
         }
 
     private:

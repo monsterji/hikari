@@ -20,7 +20,7 @@ namespace hikari {
 
     }
 
-    const ImageCache::Resource ImageCache::loadResource(const std::string & fileName) {
+    ImageCache::Resource ImageCache::loadResource(const std::string & fileName) {
         HIKARI_LOG(debug) << "Caching image: " << fileName;
 
         Resource texture(new sf::Texture());

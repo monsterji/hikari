@@ -8,8 +8,8 @@ namespace hikari {
     }
 
     Tileset::Tileset(
-        const std::shared_ptr<sf::Texture> &texture, 
-        const size_t& tileSize, 
+        const sf::Texture * texture,
+        const size_t& tileSize,
         const std::vector<sf::IntRect> &tiles,
         const std::vector<TileAnimator> &tileAnimators
     )
@@ -21,7 +21,7 @@ namespace hikari {
     }
 
     const size_t& Tileset::getTileSize() const {
-        return tileSize; 
+        return tileSize;
     }
 
     const sf::IntRect& Tileset::getTileRect(const unsigned int &index) const {
@@ -32,7 +32,7 @@ namespace hikari {
         }
     }
 
-    const std::shared_ptr<sf::Texture> Tileset::getTexture() const {
+    const sf::Texture * Tileset::getTexture() const {
         return texture;
     }
 

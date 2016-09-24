@@ -22,7 +22,7 @@ namespace gui {
         virtual gcn::Image* load(const std::string& filename, bool convertToDisplayFormat = true);
 
     protected:
-        ImageCache::Resource loadTextureFromCache(const std::string& filename);
+        const ImageCache::ResourceType * loadTextureFromCache(const std::string& filename);
     };
 
 } // hikari::gui

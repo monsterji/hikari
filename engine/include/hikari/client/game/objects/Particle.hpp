@@ -34,9 +34,9 @@ namespace hikari {
         BoundingBox<float> boundingBox;
 
         sf::Sprite sprite;
-        std::shared_ptr<sf::Texture> spriteTexture;
-        std::weak_ptr<Animation> animation;
-        std::weak_ptr<AnimationSet> animationSet;
+        const sf::Texture * spriteTexture;
+        const Animation * animation;
+        const AnimationSet * animationSet;
         std::unique_ptr<Animator> animator;
 
         std::weak_ptr<Entity> trackedObject;
@@ -67,10 +67,10 @@ namespace hikari {
         void setBoundingBox(const BoundingBox<float> & boundingBox);
         const BoundingBox<float> & getBoundingBox() const;
 
-        void setAnimationSet(const std::weak_ptr<AnimationSet> & animationSet);
-        const std::weak_ptr<AnimationSet> & getAnimationSet() const;
+        void setAnimationSet(const AnimationSet* animationSet);
+        const AnimationSet * getAnimationSet() const;
 
-        void setSpriteTexture(const std::shared_ptr<sf::Texture>& newTexture);
+        void setSpriteTexture(const sf::Texture * newTexture);
 
         void setCurrentAnimation(const std::string & animationName);
 

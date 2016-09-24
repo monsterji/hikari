@@ -59,7 +59,7 @@ namespace hikari {
             // Extract name and image file path
             std::string name = root[PROPERTY_NAME].asString();
             std::string imageFileName = root[PROPERTY_IMAGE_FILE_NAME].asString();
-            std::unique_ptr<sf::Texture> texture;
+            const sf::Texture * texture = nullptr;
 
             if(auto cache = imageCache.lock()) {
                 texture = cache->get(imageFileName);
@@ -81,7 +81,7 @@ namespace hikari {
 
                     if(animation) {
                         // TODO: Check to see if any of these fail
-                        resultSet->add(animationName, animation);
+                        resultSet->add(animationName, std::move(animation));
 
                         // Handle name aliasing if that propety is supplied
                         auto aliases = animationJson[PROPERTY_ALIASES];
@@ -89,11 +89,12 @@ namespace hikari {
                         if(!aliases.isNull() && aliases.isArray()) {
                             for(auto alias = aliases.begin(), end = aliases.end(); alias != end; alias++) {
                                 auto aliasName = (*alias).asString();
-                                resultSet->add(aliasName, animation);
+                                resultSet->addAlias(animationName, aliasName);
                             }
                         } else {
                             // TODO: Log this error as an error; this is not critical it just means the JSON is not to spec.
                         }
+
                     }
                 }
             }

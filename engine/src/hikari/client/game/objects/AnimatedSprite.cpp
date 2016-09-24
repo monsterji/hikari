@@ -45,9 +45,9 @@ namespace hikari {
 
     void AnimatedSprite::setAnimation(const std::string & animationName) {
          if(animationName != currentAnimation) {
-            if(auto animSet = animationSet.lock()) {
-                if(animSet->has(animationName)) {
-                    animator.setAnimation(animSet->get(animationName));
+            if(animationSet) {
+                if(animationSet->has(animationName)) {
+                    animator.setAnimation(animationSet->get(animationName));
                     currentAnimation = animationName;
                 }
             }
@@ -58,13 +58,11 @@ namespace hikari {
         if(animationSetPtr) {
             animationSet = animationSetPtr;
 
-            //if(auto animSet = animationSet.lock()) {
-                auto & texture = animSet->getTexture();
+            auto texture = animationSet->getTexture();
 
-                if(texture) {
-                    sprite.setTexture(*texture.get());
-                }
-            //}
+            if(texture) {
+                sprite.setTexture(*texture);
+            }
         }
     }
 

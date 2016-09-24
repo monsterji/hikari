@@ -29,7 +29,7 @@ namespace hikari {
 
     }
 
-    TileDataPtr TilesetLoader::loadFromJson(const Json::Value &json) {
+    std::unique_ptr<Tileset> TilesetLoader::loadFromJson(const Json::Value &json) {
         isValidTilesetJson(json);
         return constructTileset(json);
     }
@@ -90,7 +90,7 @@ namespace hikari {
                 && json[PROPERTY_NAME_ANIMATION].isObject();
     }
 
-    TileDataPtr TilesetLoader::constructTileset(const Json::Value &json) const {
+    std::unique_ptr<Tileset> TilesetLoader::constructTileset(const Json::Value &json) const {
         std::string surfaceName(json[PROPERTY_NAME_SURFACE].asString());
         int tileSize = json[PROPERTY_NAME_SIZE].asInt();
         int numberOfTiles = json[PROPERTY_NAME_TILES].size();
@@ -110,28 +110,28 @@ namespace hikari {
                     tileSize
                 );
 
-                if(isTileAnimated(tileJson)) {
-                    try {
-                        std::shared_ptr<Animation> tileAnimation;
-                        tileAnimation = animationLoader->loadFromJsonObject(tileJson[PROPERTY_NAME_ANIMATION]);
+                // TODO: Need to cache animations in the cache and use a pointer instead.
+                // if(isTileAnimated(tileJson)) {
+                //     try {
+                //         auto tileAnimation = animationLoader->loadFromJsonObject(tileJson[PROPERTY_NAME_ANIMATION]);
 
-                        if(tileAnimation) {
-                            TileAnimator animator(tiles, i);
-                            animator.setAnimation(tileAnimation);
-                            tileAnimators.push_back(animator);
-                        } else {
-                            HIKARI_LOG(debug) << "<TilesetLoader> ignoring invalid animation for tile index " << i << ".";
-                        }
-                    } catch(std::exception &loadException) {
-                        HIKARI_LOG(debug) << "<TilesetLoader> failed to parse animation from tile index " << i << ". Exception: " << loadException.what();
-                    }
-                }
+                //         if(tileAnimation) {
+                //             TileAnimator animator(tiles, i);
+                //             animator.setAnimation(tileAnimation);
+                //             tileAnimators.push_back(animator);
+                //         } else {
+                //             HIKARI_LOG(debug) << "<TilesetLoader> ignoring invalid animation for tile index " << i << ".";
+                //         }
+                //     } catch(std::exception &loadException) {
+                //         HIKARI_LOG(debug) << "<TilesetLoader> failed to parse animation from tile index " << i << ". Exception: " << loadException.what();
+                //     }
+                // }
             } else {
                 HIKARI_LOG(debug) << "<TilesetLoader> ignoring invalid tile index " << i << ".";
             }
         }
 
-        return TileDataPtr(
+        return std::unique_ptr<Tileset>(
             new Tileset(
                 imageCache->get(surfaceName),
                 tileSize,

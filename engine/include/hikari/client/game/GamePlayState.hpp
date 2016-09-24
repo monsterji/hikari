@@ -114,7 +114,7 @@ namespace hikari {
         std::shared_ptr<ScreenEffectsService> screenEffectsService;
         std::shared_ptr<WorldCollisionResolver> collisionResolver;
         std::shared_ptr<Map> currentMap;
-        std::shared_ptr<Tileset> currentTileset;
+        const Tileset * currentTileset;
         std::shared_ptr<Room> currentRoom;
         std::shared_ptr<Hero> hero;
         std::shared_ptr<Enemy> boss;

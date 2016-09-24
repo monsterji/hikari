@@ -9,7 +9,7 @@ namespace hikari {
 
     const Rectangle2D<int> Map::INVALID_ROOM_RECT = Rectangle2D<int>();
 
-    Map::Map(const TileDataPtr &tileset, const int &gridSize, const std::string & musicName, const std::string & bossEntity, const std::vector<RoomPtr> &rooms,
+    Map::Map(const Tileset * tileset, const int &gridSize, const std::string & musicName, const std::string & bossEntity, const std::vector<RoomPtr> &rooms,
             unsigned int startingRoomIndex, unsigned int midpointRoomIndex, unsigned int bossCorridorRoomIndex, unsigned int bossChamberRoomIndex)
         : gridSize(gridSize)
         , musicName(musicName)
@@ -19,12 +19,12 @@ namespace hikari {
         , bossCorridorRoomIndex(bossCorridorRoomIndex)
         , bossChamberRoomIndex(bossChamberRoomIndex)
         , tileset(tileset)
-        , rooms(rooms) 
+        , rooms(rooms)
     {
         constructRoomRects();
     }
 
-    TileDataPtr Map::getTileset() const {
+    const Tileset * Map::getTileset() const {
         return tileset;
     }
 
@@ -76,7 +76,7 @@ namespace hikari {
 
     unsigned int Map::findRoomIndexByLocation(int x, int y) const {
         int index = 0;
-        
+
         for(std::vector< Rectangle2D<int> >::const_iterator
             it = roomRectangles.begin(),
             end = roomRectangles.end();
@@ -93,7 +93,7 @@ namespace hikari {
     void Map::constructRoomRects() {
         roomRectangles.clear();
 
-        for(std::vector<RoomPtr>::const_iterator 
+        for(std::vector<RoomPtr>::const_iterator
             it = rooms.begin(),
             end = rooms.end();
             it != end;

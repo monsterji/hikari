@@ -16,7 +16,6 @@ namespace hikari {
     class AnimationLoader;
     class ImageCache;
     class Tileset;
-    typedef std::shared_ptr<Tileset> TileDataPtr;
 
     class HIKARI_API TilesetLoader {
     private:
@@ -35,12 +34,12 @@ namespace hikari {
         bool isValidTileJson(const Json::Value &json) const;
         bool isTileAnimated(const Json::Value &json) const;
 
-        TileDataPtr constructTileset(const Json::Value &json) const;
+        std::unique_ptr<Tileset> constructTileset(const Json::Value &json) const;
 
     public:
         TilesetLoader(const std::shared_ptr<ImageCache> &imageCache,
                 const std::shared_ptr<AnimationLoader> &animationLoader);
-        TileDataPtr loadFromJson(const Json::Value &json);
+        std::unique_ptr<Tileset> loadFromJson(const Json::Value &json);
     };
 
 } // hikari

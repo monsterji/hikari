@@ -106,7 +106,7 @@ namespace hikari {
         Entity(const Entity& proto);
         virtual ~Entity();
 
-        void setAnimationSet(const std::shared_ptr<AnimationSet> & newAnimationSet);
+        void setAnimationSet(const AnimationSet* newAnimationSet);
         void changeAnimation(const std::string& animationName);
 
         bool isUsingSharedPalette() const;

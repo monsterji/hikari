@@ -14,7 +14,7 @@ namespace sf {
 
 namespace hikari {
 
-    typedef std::shared_ptr<Animation> AnimationPtr;
+    typedef std::unique_ptr<Animation> AnimationPtr;
 
     /**
         A set of Animation objects. Associates a name with an animation object.
@@ -23,22 +23,23 @@ namespace hikari {
     private:
         std::string name;
         std::string imageFileName;
-        std::shared_ptr<sf::Texture> texture;
+        const sf::Texture * texture;
         std::unordered_map<std::string, AnimationPtr> animationMap;
+        std::unordered_map<std::string, std::string> aliases;
 
     public:
-        static const AnimationPtr NULL_ANIMATION;
-
-        AnimationSet(const std::string& name, const std::string& imageFileName, const std::shared_ptr<sf::Texture> & texture);
+        AnimationSet(const std::string& name, const std::string& imageFileName, const sf::Texture * texture);
 
         const std::string& getName() const;
         const std::string& getImageFileName() const;
-        const std::shared_ptr<sf::Texture> & getTexture() const;
+        const sf::Texture * getTexture() const;
 
-        bool add(const std::string& name, const AnimationPtr& animation);
+        bool add(const std::string& name, AnimationPtr && animation);
+        bool addAlias(const std::string& name, const std::string& alias);
         bool has(const std::string& name) const;
         bool remove(const std::string& name);
-        const AnimationPtr& get(const std::string& name);
+        bool removeAlias(const std::string& alias);
+        const Animation * get(const std::string & name) const;
     };
 
 } // hikari

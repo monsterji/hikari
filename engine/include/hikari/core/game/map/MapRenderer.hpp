@@ -23,7 +23,6 @@ namespace hikari {
     class Tileset;
 
     typedef std::shared_ptr<Room> RoomPtr;
-    typedef std::shared_ptr<Tileset> TileDataPtr;
 
     class HIKARI_API MapRenderer {
     private:
@@ -32,7 +31,7 @@ namespace hikari {
         static bool isDebugDoorRenderingEnabled;
         static const int TILE_OVERDRAW;
         RoomPtr room;
-        TileDataPtr tileData;
+        const Tileset * tileData;
         sf::Sprite tileSprite;
         sf::RectangleShape backgroundShape;
         sf::RectangleShape debugLadderShape;
@@ -46,13 +45,13 @@ namespace hikari {
         inline void applyTileAttributes(const int &attributes);
 
     public:
-        MapRenderer(const RoomPtr &room, const TileDataPtr &tileData);
+        MapRenderer(const RoomPtr &room, const Tileset * tileData);
 
         void setRoom(const RoomPtr &room);
         RoomPtr getRoom() const;
 
-        void setTileData(const TileDataPtr &tileData);
-        TileDataPtr getTileData() const;
+        void setTileData(const Tileset * tileData);
+        const Tileset * getTileData() const;
 
         void setCullRegion(const Rectangle2D<int> &cullRegion);
 

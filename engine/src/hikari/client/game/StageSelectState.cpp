@@ -78,10 +78,10 @@ namespace hikari {
         // TODO: This needs to be refactored to be safer and things like that
         // TODO: Need a utility method to load sf:Sprite from JSON
         if(auto imageCachePtr = imageCache.lock()) {
-            background.setTexture(*imageCachePtr->get(params[PROPERTY_BACKGROUND].asString()).get());
-            foreground.setTexture(*imageCachePtr->get(params[PROPERTY_FOREGROUND].asString()).get());
-            leftEye.setTexture(*imageCachePtr->get(params[PROPERTY_EYE_SPRITE].asString()).get());
-            rightEye.setTexture(*imageCachePtr->get(params[PROPERTY_EYE_SPRITE].asString()).get());
+            background.setTexture(*imageCachePtr->get(params[PROPERTY_BACKGROUND].asString()));
+            foreground.setTexture(*imageCachePtr->get(params[PROPERTY_FOREGROUND].asString()));
+            leftEye.setTexture(*imageCachePtr->get(params[PROPERTY_EYE_SPRITE].asString()));
+            rightEye.setTexture(*imageCachePtr->get(params[PROPERTY_EYE_SPRITE].asString()));
         }
 
         guiCursor.first.reset(new gui::Icon(params[PROPERTY_CURSOR_SPRITE].asString()));

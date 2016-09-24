@@ -17,7 +17,7 @@ namespace hikari {
         bool paused;
         float timeElapsed;
         unsigned int currentFrameIndex;
-        std::shared_ptr<Animation> animation;
+        const Animation * animation;
         AnimationCallback callback;
 
         void play(float delta);
@@ -27,7 +27,7 @@ namespace hikari {
     protected:
         float getTimeElapsed() const;
         unsigned int getCurrentFrameIndex() const;
-        std::shared_ptr<Animation> getAnimation() const;
+        const Animation * const getAnimation() const;
 
     public:
         Animator();
@@ -37,7 +37,7 @@ namespace hikari {
         void unpause();
         const bool isPaused() const;
         virtual void update(float delta);
-        void setAnimation(std::shared_ptr<Animation> animation);
+        void setAnimation(const Animation * animation);
         void setAnimationCallback(const AnimationCallback& callback);
     };
 

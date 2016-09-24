@@ -47,7 +47,7 @@ namespace hikari {
 
         // Copied from Entity; need to find a way to share this code
         // TODO: Refactor this so that Doors can share common code with Entity
-        void setAnimationSet(const std::shared_ptr<AnimationSet> & newAnimationSet);
+        void setAnimationSet(const AnimationSet * newAnimationSet);
         void changeAnimation(const std::string& animationName);
 
         void open();

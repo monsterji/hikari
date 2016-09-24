@@ -21,16 +21,16 @@ namespace hikari {
         std::string name;
         std::weak_ptr<AnimationSetCache> animationSetCache;
         std::weak_ptr<ImageCache> imageCache;
-        std::shared_ptr<sf::Texture> spriteTexture;
+        const sf::Texture * spriteTexture;
         sf::Sprite sprite;
         sf::Sprite flippedSprite;
         sf::RectangleShape positionPixel;
-        std::shared_ptr<Animation> animation;
+        const Animation * animation;
         SpriteAnimator animationPlayer;
-    
+
     public:
         SpriteTestState(const std::string &name, std::weak_ptr<AnimationSetCache> animationSetCache, std::weak_ptr<ImageCache> imageCache);
-        
+
         virtual ~SpriteTestState() {}
 
         virtual void handleEvent(sf::Event &event);

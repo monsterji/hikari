@@ -19,10 +19,10 @@ namespace hikari {
     class Tileset;
 
     typedef std::shared_ptr<Room> RoomPtr;
-    typedef std::shared_ptr<Tileset> TileDataPtr;
+    typedef const Tileset * TileDataPtr;
 
     /**
-     * 
+     *
      */
     class HIKARI_API Map {
     private:
@@ -33,7 +33,7 @@ namespace hikari {
         unsigned int midpointRoomIndex;     // Index of the room in the current map where the hero spawns from if reached
         unsigned int bossCorridorRoomIndex; // Index of the room where the hero spawns from if he reached the boss chamber
         unsigned int bossChamberRoomIndex;  // Index of the room where the hero fights the boss
-        TileDataPtr tileset;
+        const Tileset * tileset;
         std::vector<RoomPtr> rooms;
         std::vector< Rectangle2D<int> > roomRectangles; // stores room locations and dimensions in pixels
 
@@ -47,7 +47,7 @@ namespace hikari {
     public:
         static const Rectangle2D<int> INVALID_ROOM_RECT;
 
-        Map(const TileDataPtr &tileset, const int &gridSize, const std::string & musicName, const std::string & bossEntity, const std::vector<RoomPtr> &rooms, 
+        Map(const Tileset * tileset, const int &gridSize, const std::string & musicName, const std::string & bossEntity, const std::vector<RoomPtr> &rooms,
             unsigned int startRoomIndex = 0, unsigned int midpointRoomIndex = 0, unsigned int bossCorridorRoomIndex = 0, unsigned int bossChamberRoomIndex = 0);
 
         /**
@@ -55,10 +55,10 @@ namespace hikari {
          *
          * @return Tileset pointer
          */
-        TileDataPtr getTileset() const;
+        const Tileset * getTileset() const;
 
         /**
-         * Gets the size, in pixels, of the grid in this stage. The grid is 
+         * Gets the size, in pixels, of the grid in this stage. The grid is
          * always square.
          *
          * @return size of the grid
@@ -112,7 +112,7 @@ namespace hikari {
         * Gets a pointer to the map data of the room with a specific index.
         * If no room can be found and the specified index, an empty pointer
         * is returned.
-        * 
+        *
         * @param  index index of the room to get
         * @return       pointer to room at (index) or nullptr if not found
         */

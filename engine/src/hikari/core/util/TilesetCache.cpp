@@ -13,7 +13,7 @@ namespace hikari {
 
     }
 
-    const TilesetCache::Resource TilesetCache::loadResource(const std::string & fileName) {
+    TilesetCache::Resource TilesetCache::loadResource(const std::string & fileName) {
         HIKARI_LOG(debug) << "Caching tileset: " << fileName;
 
         auto fs = FileSystem::openFileRead(fileName);

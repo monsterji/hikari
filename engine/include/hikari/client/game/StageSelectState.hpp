@@ -67,9 +67,9 @@ namespace hikari {
         std::unique_ptr<gui::Icon> guiRightEye;
         AnimatedIcon guiCursor;
 
-        std::shared_ptr<AnimationSet> cursorAnimations;
-        std::shared_ptr<AnimationSet> portraitAnimations;
-        std::shared_ptr<AnimationSet> eyeAnimations;
+        const AnimationSet * cursorAnimations;
+        const AnimationSet * portraitAnimations;
+        const AnimationSet * eyeAnimations;
 
         sf::Sprite background;
         sf::Sprite foreground;

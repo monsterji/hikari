@@ -3,8 +3,8 @@
 #include "hikari/core/game/AnimationPlaybackException.hpp"
 
 namespace hikari {
-    
-    Animator::Animator() 
+
+    Animator::Animator()
         : paused(false)
         , timeElapsed(0.0f)
         , currentFrameIndex(Animation::ANIMATION_BEGINNING_FRAME_INDEX)
@@ -25,7 +25,7 @@ namespace hikari {
         return currentFrameIndex;
     }
 
-    std::shared_ptr<Animation> Animator::getAnimation() const {
+    const Animation * const Animator::getAnimation() const {
         return animation;
     }
 
@@ -83,11 +83,11 @@ namespace hikari {
 
     void Animator::update(float delta) {
         if(animation && !isPaused()) {
-            play(delta);    
+            play(delta);
         }
     }
 
-    void Animator::setAnimation(std::shared_ptr<Animation> animation) {
+    void Animator::setAnimation(const Animation * animation) {
         // Setting animation for the first time
         if(!this->animation) {
             this->animation = animation;

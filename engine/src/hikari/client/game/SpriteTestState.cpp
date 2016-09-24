@@ -26,8 +26,8 @@ namespace hikari {
                     spriteTexture = images->get(animationSet->getImageFileName());
                 }
             }
-            
-            spriteTexture->setSmooth(false);
+
+            // spriteTexture->setSmooth(false);
             sprite.setTexture(*spriteTexture);
             sprite.setPosition(100.0f, 100.0f);
             sprite.setScale(1.0f, 1.0f);

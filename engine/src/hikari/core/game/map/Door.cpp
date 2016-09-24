@@ -46,7 +46,7 @@ namespace hikari {
         return DOOR_CLOSED == doorState;
     }
 
-    void Door::setAnimationSet(const std::shared_ptr<AnimationSet> & newAnimationSet) {
+    void Door::setAnimationSet(const AnimationSet * newAnimationSet) {
         animatedSprite.setAnimationSet(newAnimationSet);
         changeAnimation("closed");
     }

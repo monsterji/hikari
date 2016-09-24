@@ -42,7 +42,7 @@ namespace hikari {
     {
         setAnimationSet(animationSet);
         setSpriteTexture(spriteTexture);
-        animator->setAnimation(animation.lock());
+        animator->setAnimation(animation);
         animator->rewind();
     }
 
@@ -134,31 +134,31 @@ namespace hikari {
         return boundingBox;
     }
 
-    void Particle::setAnimationSet(const std::weak_ptr<AnimationSet> & animationSet) {
+    void Particle::setAnimationSet(const AnimationSet * animationSet) {
         this->animationSet = animationSet;
-        animator->setAnimation(animation.lock());
+        animator->setAnimation(animation);
     }
 
-    const std::weak_ptr<AnimationSet> & Particle::getAnimationSet() const {
+    const AnimationSet * Particle::getAnimationSet() const {
         return animationSet;
     }
 
-    void Particle::setSpriteTexture(const std::shared_ptr<sf::Texture>& newTexture) {
+    void Particle::setSpriteTexture(const sf::Texture * newTexture) {
         spriteTexture = newTexture;
 
         if(spriteTexture) {
-            sprite.setTexture(*(spriteTexture.get()));
+            sprite.setTexture(*spriteTexture);
         }
     }
 
     void Particle::setCurrentAnimation(const std::string & animationName) {
-        if(auto set = animationSet.lock()) {
-            if(set->has(animationName)) {
-                animation = set->get(animationName);
+        if(animationSet) {
+            if(animationSet->has(animationName)) {
+                animation = animationSet->get(animationName);
             }
         }
 
-        animator->setAnimation(animation.lock());
+        animator->setAnimation(animation);
     }
 
     void Particle::setTrackedObject(const std::weak_ptr<Entity> & trackedObject) {

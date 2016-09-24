@@ -576,7 +576,9 @@ namespace hikari {
             }
 
             if(currentTileset) {
-                currentTileset->update(dt);
+                // TODO: Treat the tileset as read-only.
+                // Design an animator that is separate.
+                // currentTileset->update(dt);
             }
         }
 

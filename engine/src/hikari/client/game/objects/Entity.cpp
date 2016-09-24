@@ -116,7 +116,7 @@ namespace hikari {
         }
     }
 
-    void Entity::setAnimationSet(const std::shared_ptr<AnimationSet> & newAnimationSet) {
+    void Entity::setAnimationSet(const AnimationSet * newAnimationSet) {
         if(newAnimationSet && animatedSprite) {
             animatedSprite->setAnimationSet(newAnimationSet);
         }
