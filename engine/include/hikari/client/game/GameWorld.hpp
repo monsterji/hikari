@@ -1,7 +1,6 @@
 #ifndef HIKARI_CLIENT_GAME_GAMEWORLD
 #define HIKARI_CLIENT_GAME_GAMEWORLD
 
-#include "hikari/core/game/Updatable.hpp"
 #include "hikari/core/math/Vector2.hpp"
 #include "hikari/core/game/Direction.hpp"
 
@@ -34,7 +33,7 @@ namespace hikari {
     class ProjectileFactory;
     class EventBus;
 
-    class GameWorld : public Updatable {
+    class GameWorld {
     private:
         std::weak_ptr<EventBus> eventBus;
         std::shared_ptr<Hero> player;

@@ -43,9 +43,6 @@ namespace hikari {
         PalettedAnimatedSprite(const PalettedAnimatedSprite & proto);
         virtual ~PalettedAnimatedSprite();
 
-        //
-        // Inherited from hikari::Updatable
-        //
         virtual void update(float dt);
 
         virtual void render(sf::RenderTarget &target) const;

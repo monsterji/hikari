@@ -1,8 +1,6 @@
 #ifndef HIKARI_CLIENT_GAME_TASK
 #define HIKARI_CLIENT_GAME_TASK
 
-#include "hikari/core/game/Updatable.hpp"
-
 namespace hikari {
 
     /**
@@ -11,7 +9,7 @@ namespace hikari {
      * completed. Some tasks can block, which prevents other tasks from 
      * executing, while others run in parallel.
      */
-    class Task : public Updatable {
+    class Task {
     public:
         enum SequenceType {
             TYPE_PARALLEL = 0,

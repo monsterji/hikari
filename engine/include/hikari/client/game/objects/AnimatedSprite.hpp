@@ -2,7 +2,6 @@
 #define HIKARI_CLIENT_GAME_OBJECTS_ANIMATEDSPRITE
 
 #include "hikari/core/game/SpriteAnimator.hpp"
-#include "hikari/core/game/Updatable.hpp"
 #include "hikari/core/math/Vector2.hpp"
 
 #include <SFML/Graphics/Sprite.hpp>
@@ -34,9 +33,6 @@ namespace hikari {
         AnimatedSprite(const AnimatedSprite & proto);
         virtual ~AnimatedSprite();
 
-        //
-        // Inherited from hikari::Updatable
-        //
         virtual void update(float dt);
 
         virtual void render(sf::RenderTarget &target) const;

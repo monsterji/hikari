@@ -2,7 +2,6 @@
 #define HIKARI_CORE_GAME_MAP_DOOR
 
 #include "hikari/core/Platform.hpp"
-#include "hikari/core/game/Updatable.hpp"
 #include "hikari/core/geom/BoundingBox.hpp"
 #include "hikari/client/game/objects/AnimatedSprite.hpp"
 
@@ -14,7 +13,7 @@ namespace sf {
 
 namespace hikari {
 
-    class HIKARI_API Door : public Updatable {
+    class HIKARI_API Door {
     private:
         enum DoorState {
             DOOR_CLOSED,
@@ -56,7 +55,6 @@ namespace hikari {
         void setOpen();
         void setClosed();
 
-        // Inherited from hikari::Updatable
         virtual void update(float dt);
 
         void render(sf::RenderTarget & target) const;

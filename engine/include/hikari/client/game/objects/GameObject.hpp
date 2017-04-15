@@ -1,11 +1,11 @@
 #ifndef HIKARI_CLIENT_GAME_GAMEOBJECT
 #define HIKARI_CLIENT_GAME_GAMEOBJECT
 
-#include "hikari/core/game/Updatable.hpp"
-
 namespace hikari {
-    
-    class GameObject : public Updatable {
+
+    class GameWorld;
+
+    class GameObject {
     //
     // Static members
     //

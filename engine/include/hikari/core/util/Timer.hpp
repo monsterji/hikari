@@ -2,12 +2,11 @@
 #define HIKARI_CORE_UTIL_TIMER
 
 #include "hikari/core/Platform.hpp"
-#include "hikari/core/game/Updatable.hpp"
 #include <functional>
 
 namespace hikari {
 
-    class Timer : public Updatable {
+    class Timer {
     public:
         typedef std::function<void (Timer &)> TimerCallback;
 
