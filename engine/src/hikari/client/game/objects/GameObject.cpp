@@ -138,6 +138,14 @@ namespace hikari {
         }
     }
 
+    bool GameObject::isObstacle() const {
+        return obstacleFlag;
+    }
+
+    void GameObject::setObstacleFlag(bool isObstacle) {
+        this->obstacleFlag = isObstacle;
+    }
+
     void GameObject::onActivated() {
 
     }

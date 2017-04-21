@@ -110,6 +110,24 @@ namespace hikari {
         bool isActive() const;
         void setActive(bool activeFlag);
 
+        /**
+         * Gets the "obstacle status" of this GameObject.
+         *
+         * @return whether this GameObject is an obstacle or not
+         * @see GameObject::setObstacleFlag
+         */
+        bool isObstacle() const;
+
+        /**
+         * Sets whether this GameObject acts like an obstacle. When an GameObject is
+         * an obstacle, it obstructs the movement of other GameObjects. It can
+         * also be stood on like solid ground.
+         *
+         * @param obstacle flag for whether this GameObject should be an obstacle or not
+         * @see GameObject::isObstacle
+         */
+        void setObstacleFlag(bool obstacleFlag);
+
         virtual void update(float dt);
 
         virtual void reset();

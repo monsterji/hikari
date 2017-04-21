@@ -60,7 +60,6 @@ namespace hikari {
         int damageId;
         int zIndex;
 
-        bool obstacleFlag; // Does this object act like an obstacle?
         bool shieldFlag;   // Does this object deflect projectiles right now?
         bool agelessFlag;  // Does this object not experience aging?
 
@@ -186,24 +185,6 @@ namespace hikari {
          * @see Entity::setGravitated
          */
         bool isGravitated() const;
-
-        /**
-         * Sets whether this Entity acts like an obstacle. When an Entity is
-         * an obstacle, it obstructs the movement of other Entities. It can
-         * also be stood on (like solid ground).
-         *
-         * @param obstacle flag for whether this Entity should be an obstacle or not
-         * @see Entity::isObstacle
-         */
-        void setObstacle(bool obstacle);
-
-        /**
-         * Gets the "obstacle status" of this Entity.
-         *
-         * @return whether this Entity is an obstacle or not
-         * @see Entity::setObstacle
-         */
-        bool isObstacle() const;
 
         /**
          * Sets whether this Entity deflects projectiles or not.

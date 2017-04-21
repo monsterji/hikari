@@ -35,7 +35,6 @@ namespace hikari {
         , weaponId(0)
         , damageId(0)
         , zIndex(0)
-        , obstacleFlag(false)
         , shieldFlag(false)
         , agelessFlag(false)
         , age(DEFAULT_AGE_IN_M_SECONDS)
@@ -76,7 +75,6 @@ namespace hikari {
         , weaponId(proto.weaponId)
         , damageId(proto.damageId)
         , zIndex(proto.zIndex)
-        , obstacleFlag(proto.obstacleFlag)
         , shieldFlag(proto.shieldFlag)
         , agelessFlag(proto.agelessFlag)
         , age(0)
@@ -86,6 +84,7 @@ namespace hikari {
         , body(proto.body)
         , activeShots()
     {
+        setObstacleFlag(proto.isObstacle()); // TODO: Maybe remove this and take advantage of GameObject's copy ctor?
         setDefinition(proto.getDefinition());
         setGravitated(proto.isGravitated());
         setPhasing(proto.isPhasing());
@@ -393,14 +392,6 @@ namespace hikari {
 
     bool Entity::isGravitated() const {
         return body.isGravitated();
-    }
-
-    void Entity::setObstacle(bool isObstacle) {
-        this->obstacleFlag = isObstacle;
-    }
-
-    bool Entity::isObstacle() const {
-        return obstacleFlag;
     }
 
     void Entity::setShielded(bool shielded) {

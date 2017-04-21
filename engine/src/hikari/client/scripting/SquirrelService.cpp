@@ -160,6 +160,7 @@ namespace hikari {
                 // Disabling the use of `getId` for now since it is a struct type.
                 //.Func(_SC("getId"), &GameObject::getId)
                 .Prop(_SC("isActive"), &GameObject::isActive, &GameObject::setActive)
+                .Prop(_SC("isObstacle"), &GameObject::isObstacle, &GameObject::setObstacleFlag)
             );
 
             Sqrat::RootTable(vm).Bind(
@@ -168,7 +169,6 @@ namespace hikari {
                 .Prop(_SC("velocityX"), &Entity::getVelocityX, &Entity::setVelocityX)
                 .Prop(_SC("velocityY"), &Entity::getVelocityY, &Entity::setVelocityY)
                 .Prop(_SC("isGravitated"), &Entity::isGravitated, &Entity::setGravitated)
-                .Prop(_SC("isObstacle"), &Entity::isObstacle, &Entity::setObstacle)
                 .Prop(_SC("isPhasing"), &Entity::isPhasing, &Entity::setPhasing)
                 .Prop(_SC("isShielded"), &Entity::isShielded, &Entity::setShielded)
                 .Prop(_SC("weaponId"), &Entity::getWeaponId, &Entity::setWeaponId)
