@@ -1,3 +1,5 @@
+#include "hikari/client/game/objects/GameObject.hpp"
+#include "hikari/client/game/objects/GameObjectUtils.hpp"
 #include "hikari/client/game/objects/Particle.hpp"
 #include "hikari/client/game/objects/Entity.hpp"
 #include "hikari/core/game/AnimationSet.hpp"
@@ -11,8 +13,8 @@ namespace hikari {
     Particle::Particle(float maximumAge)
         : GameObject()
         , zIndex(100)
-        , age(0.0f)
-        , maximumAge(maximumAge)
+        //, age(0.0f)
+        //, maximumAge(maximumAge)
         , velocity(0.0f, 0.0f)
         , boundingBox(0.0f, 0.0f, 0.0f, 0.0f)
         , sprite()
@@ -30,8 +32,8 @@ namespace hikari {
     Particle::Particle(const Particle& proto)
         : GameObject()
         , zIndex(proto.zIndex)
-        , age(0.0f)
-        , maximumAge(proto.maximumAge)
+        //, age(0.0f)
+        //, maximumAge(proto.maximumAge)
         , velocity(proto.velocity)
         , boundingBox(proto.boundingBox)
         , sprite(proto.sprite)
@@ -40,6 +42,8 @@ namespace hikari {
         , animationSet(proto.animationSet)
         , animator(new SpriteAnimator(sprite))
     {
+        GameObjectUtils::setAgeFlag(*this, GameObjectUtils::canAge(proto));
+        setDefinition(proto.getDefinition());
         setAnimationSet(animationSet);
         setSpriteTexture(spriteTexture);
         animator->setAnimation(animation);
@@ -75,12 +79,12 @@ namespace hikari {
 
         setPosition(getPosition() + getVelocity());
 
-        age += dt;
+        // age += dt;
 
-        if(getMaximumAge() > 0 && (age >= getMaximumAge())) {
-            // Die
-            setActive(false);
-        }
+        // if(getMaximumAge() > 0 && (age >= getMaximumAge())) {
+        //     // Die
+        //     setActive(false);
+        // }
     }
 
     void Particle::render(sf::RenderTarget &target) {
@@ -103,11 +107,11 @@ namespace hikari {
     }
 
     void Particle::setMaximumAge(float maximumAge) {
-        this->maximumAge = maximumAge;
+        //this->maximumAge = maximumAge;
     }
 
     float Particle::getMaximumAge() const {
-        return maximumAge;
+        return 0;
     }
 
     void Particle::setPosition(const Vector2<float> & position) {

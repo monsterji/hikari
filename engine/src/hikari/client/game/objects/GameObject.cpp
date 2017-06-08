@@ -1,8 +1,11 @@
 #include "hikari/client/game/objects/GameObject.hpp"
 #include "hikari/client/game/objects/GameObjectDefinition.hpp"
+#include "hikari/client/game/objects/GameObjectUtils.hpp"
 #include "hikari/core/util/Log.hpp"
 
 namespace hikari {
+
+    using Utils = GameObjectUtils;
 
     GameObject::Id::Id()
         : id{0}
@@ -70,6 +73,7 @@ namespace hikari {
         , shieldFlag(false)
         , ageFlag(false)
         , direction{Directions::None}
+        , age{0.0f}
         , definition{nullptr}
         , eventBus{nullptr}
     {
@@ -85,6 +89,7 @@ namespace hikari {
         , ageFlag{other.ageFlag}
         , direction{other.direction}
         , definition{other.definition}
+        , age{0.0f}
         , eventBus{other.eventBus}
     {
 
@@ -155,7 +160,16 @@ namespace hikari {
     }
 
     void GameObject::update(float dt) {
+        if(isActive()) {
+            if(Utils::canAge(*this)) {
+                Utils::advanceAge(*this, dt);
 
+                if(Utils::isTooOld(*this)) {
+                    // onDeath();
+                    setActive(false);
+                }
+            }
+        }
     }
 
     void GameObject::reset() {

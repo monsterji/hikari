@@ -28,8 +28,8 @@ namespace hikari {
     class Particle : public GameObject, public Renderable, public Cloneable<Particle> {
     private:
         int zIndex;
-        float age;
-        float maximumAge;
+        // float age;
+        // float maximumAge;
         Vector2<float> velocity;
         BoundingBox<float> boundingBox;
 

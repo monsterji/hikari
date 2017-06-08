@@ -7,6 +7,7 @@
 #include "hikari/client/game/objects/HitBox.hpp"
 #include "hikari/client/game/objects/GameObjectDefinition.hpp"
 #include "hikari/client/game/objects/GameObject.hpp"
+#include "hikari/client/game/objects/GameObjectUtils.hpp"
 #include "hikari/client/game/objects/CollectableItem.hpp"
 #include "hikari/client/game/objects/Enemy.hpp"
 #include "hikari/client/game/objects/Projectile.hpp"
@@ -386,6 +387,7 @@ namespace FactoryHelpers {
                             instance->setCurrentAnimation(animationName);
 
                             instance->setDefinition(definition.get());
+                            GameObjectUtils::setAgeFlag(*instance, true);
 
                             definition->setMaximumAge(maximumAge);
 

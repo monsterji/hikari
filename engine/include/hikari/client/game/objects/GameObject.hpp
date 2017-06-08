@@ -84,6 +84,8 @@ namespace hikari {
 
         Direction direction;
 
+        float age;
+
         const GameObjectDefinition * definition;
         EventBus * eventBus;
 
